@@ -1,0 +1,1947 @@
+Script started on 2024-09-20 15:22:58+02:00 [TERM="xterm-kitty" TTY="/dev/pts/3" COLUMNS="87" LINES="46"]
+[REDACTED@archlinux khadas]$ dockerrexec -ti fenix bash
+root@a3d34f590b7e:/home/khadas/fenix# make clean
+./scripts/clean.sh
+[i] FENIX (scripts/clean.sh) BUILD: /home/khadas/fenix/build | DL: /home/khadas/fenix/downloads | sudo:
+Warning: Do you want to perform cleanup? [N/y] y
+root@a3d34f590b7e:/home/khadas/fenix# sourcebenv/setenv.sh
+[i] FULL USAGE INFO: source env/setenv.sh --help
+[i] press Ctrl+C for abort
+
+Choose Khadas board:
+ 1) Edge1    - Khadas Edge with Rockchip RK3399 SoC
+ 2) Edge2    - Khadas Edge2 with Rockchip RK3588S SoC
+ 3) VIM1S    - Khadas VIM1S with Amlogic S905Y4 SoC
+ 4) VIM3     - Khadas VIM3 with Amlogic A311D SoC
+ 5) VIM3L    - Khadas VIM3L with Amlogic S905D3 SoC
+ 6) VIM4     - Khadas VIM4 with Amlogic A311D2 SoC
+
+Which board would you like? [2] 2
+=> Edge2
+
+Choose uboot version:
+1. uboot-2017.09 - U-boot 2017.09
+2. uboot-mainline - U-boot Mainline
+
+Which uboot version would you like? [1] 1
+=> 2017.09
+
+Choose linux version:
+1. linux-5.10
+2. linux-6.1
+3. linux-mainline
+
+Which linux version would you like? [1] 2
+=> 6.1
+
+Choose distribution:
+1. Ubuntu - Ubuntu
+2. Debian - Debian
+
+Which distribution would you like? [1] 1
+=> Ubuntu
+
+Choose Ubuntu release:
+1. jammy - Ubuntu 22.04
+2. noble - Ubuntu 24.04
+
+Which Ubuntu release would you like? [2] 2
+=> noble
+
+Choose Ubuntu type:
+1. server - Headless Image With Essential Packages
+2. minimal - Minimal Image With Very Basic Packages
+3. gnome - Desktop Image With GNOME Desktop
+
+Which Ubuntu type would you like? [1] 3
+=> gnome
+
+Set architecture to 'arm64' by default.
+=> arm64
+
+Choose install type:
+1. EMMC - Image For Writing to eMMC Storage With USB Burning Tool
+2. SD-USB - Image For Writing to SD/USB Storage
+
+Which install type would you like? [1] 1
+=> EMMC
+
+Compress image? [N|y] y
+
+=> yes
+
+== ENV CONFIG =======================
+VERSION=1.6.9.1
+KHADAS_BOARD=Edge2
+LINUX=6.1
+UBOOT=2017.09
+DISTRIBUTION=Ubuntu
+DISTRIB_RELEASE=noble
+DISTRIB_RELEASE_VERSION=24.04
+DISTRIB_TYPE=gnome
+DISTRIB_ARCH=arm64
+INSTALL_TYPE=EMMC
+COMPRESS_IMAGE=yes
+
+== ONE LINE CONFIG ==================
+source env/setenv.sh -q -s  KHADAS_BOARD=Edge2 LINUX=6.1 UBOOT=2017.09 DISTRIBUTION=Ubuntu DISTRIB_RELEASE=noble DISTRIB_RELEASE_VERSION=24.04 DISTRIB_TYPE=gnome DISTRIB_ARCH=arm64 INSTALL_TYPE=EMMC COMPRESS_IMAGE=yes
+
+End of the environment setup.
+Execute 'make' to start the build or try 'make help'.
+root@a3d34f590b7e:/home/khadas/fenix# make uboot-image
+[i] FENIX (scripts/build.sh) BUILD: /home/khadas/fenix/build | DL: /home/khadas/fenix/downloads | sudo:
+Info: Build host: noble target: noble
+Info: Running in container: docker
+Info: apt-cacher is disabled in containers.
+ln -sf /usr/bin/python3 /home/khadas/fenix/build/bin/python
+[i] check python -> Python 3.12.3
+ln -sf /usr/bin/python3 /home/khadas/fenix/build/bin/python2
+[i] check python2 -> Python 3.12.3
+Extracting 'gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz' to '/home/khadas/fenix/build'...
+Extracting 'gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz' to '/home/khadas/fenix/build'...
+Extracting 'gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz' to '/home/khadas/fenix/build'...
+Extracting 'gcc-linaro-7.3.1-2018.05-x86_64_aarch64-elf.tar.xz' to '/home/khadas/fenix/build'...
+Extracting 'arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz' to '/home/khadas/fenix/build'...
+Extracting 'arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz' to '/home/khadas/fenix/build'...
+Extracting 'xpack-riscv-none-embed-gcc-8.3.0-1.2-linux-x64.tar.gz' to '/home/khadas/fenix/build'...
+Extracting 'utils-0b209089f98929267fce98dcd7d34672cb5b98fc.tar.gz' to '/home/khadas/fenix/build'...
+Extracting 'images_upgrade-63e4e73fe342af60bf284b344f35a459547c8037.tar.gz' to '/home/khadas/fenix/build'...
+Extracting 'rkbin-31cb97291700d408f38ba7a1dc67265672daea6b.tar.gz' to '/home/khadas/fenix/build'...
+Extracting 'rkbin-5aa9a92b5652d37b323c870329103e120dfc8d87.tar.gz' to '/home/khadas/fenix/build'...
+[PATCH] /home/khadas/fenix/packages/rkbin_edge1/patches/5aa9a92b5652d37b323c870329103e120dfc8d87/0001-add-SPI-merger-tool-for-RK3399.patch ::
+patching file firmware_merger
+patching file rk3399_spi.ini
+Info: U-boot repository does not exist, clone u-boot repository('khadas-edges-v2017.09') from 'https://github.com/khadas/u-boot'...
+Cloning into '/home/khadas/fenix/build/u-boot'...
+remote: Enumerating objects: 15087, done.
+remote: Counting objects: 100% (15087/15087), done.
+remote: Compressing objects: 100% (13437/13437), done.
+remote:nTotale15087 (delta42773),0reused66378M(delta01389),Bpack-reused 0 (from 0)
+Receiving objects: 100% (15087/15087), 20.26 MiB | 10.33 MiB/s, done.
+Resolving deltas: 100% (2773/2773), done.
+Updating files: 100% (13817/13817), done.
+Info: U-boot: Already on branch 'khadas-edges-v2017.09'
+Info: Try to update u-boot:khadas-edges-v2017.09
+remote: Enumerating objects: 828057, done.
+remote: Counting objects: 100% (828042/828042), done.
+remote: Compressing objects: 100% (183142/183142), done.
+remote:nTotale8168059(delta8636821),0reused8802449B(delta6622993), pack-reused 0 (from 0)
+Receiving objects: 100% (816805/816805), 770.59 MiB | 13.57MMiB/s, done.
+Resolving deltas: 100% (636821/636821), completed with 9058 local objects.
+From https://github.com/khadas/u-boot
+ * branch		   khadas-edges-v2017.09       -> FETCH_HEAD
+ * [new tag]		   Edge_Nougat_V190527	       -> Edge_Nougat_V190527
+ * [new tag]		   Edge_Nougat_V191115	       -> Edge_Nougat_V191115
+ * [new tag]		   Edge_Pie_V190719	       -> Edge_Pie_V190719
+ * [new tag]		   Edge_Pie_V190816	       -> Edge_Pie_V190816
+ * [new tag]		   Edge_Pie_V190912	       -> Edge_Pie_V190912
+ * [new tag]		   Edge_Pie_V191205	       -> Edge_Pie_V191205
+ * [new tag]		   Edge_Pie_V191223	       -> Edge_Pie_V191223
+ * [new tag]		   Edge_Pie_V191227	       -> Edge_Pie_V191227
+ * [new tag]		   Edge_pie_V190626	       -> Edge_pie_V190626
+ * [new tag]		   S905_COMMON		       -> S905_COMMON
+ * [new tag]		   V160919		       -> V160919
+ * [new tag]		   V161211		       -> V161211
+ * [new tag]		   V170421		       -> V170421
+ * [new tag]		   V170603		       -> V170603
+ * [new tag]		   V170901		       -> V170901
+ * [new tag]		   V171027		       -> V171027
+ * [new tag]		   V180206		       -> V180206
+ * [new tag]		   V180622		       -> V180622
+ * [new tag]		   V181214		       -> V181214
+ * [new tag]		   V190125		       -> V190125
+ * [new tag]		   V190327		       -> V190327
+ * [new tag]		   V190328		       -> V190328
+ * [new tag]		   Vim3-pie-V190704	       -> Vim3-pie-V190704
+ * [new tag]		   Vims-Pie-V190823	       -> Vims-Pie-V190823
+ * [new tag]		   Vims-Pie-V191202	       -> Vims-Pie-V191202
+ * [new tag]		   Vims-Pie-V200103	       -> Vims-Pie-V200103
+ * [new tag]		   Vims-Pie-V200320	       -> Vims-Pie-V200320
+ * [new tag]		   Vims-Pie-V200617	       -> Vims-Pie-V200617
+ * [new tag]		   Vims-Pie-V200918	       -> Vims-Pie-V200918
+ * [new tag]		   Vims-Pie-V201113	       -> Vims-Pie-V201113
+ * [new tag]		   Vims-Pie-V210128	       -> Vims-Pie-V210128
+ * [new tag]		   Vims-Pie-V210527	       -> Vims-Pie-V210527
+ * [new tag]		   Vims-Pie-V210906	       -> Vims-Pie-V210906
+ * [new tag]		   Vims-Pie-V211022	       -> Vims-Pie-V211022
+ * [new tag]		   Vims-Pie-V211220	       -> Vims-Pie-V211220
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.2-release -> khadas-edges-u-boot-2017.09-v1.2-release
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.4-release -> khadas-edges-u-boot-2017.09-v1.4-release
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.5-release -> khadas-edges-u-boot-2017.09-v1.5-release
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.6.1-release -> khadas-edges-u-boot-2017.09-v1.6.1-release
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.6.2-release -> khadas-edges-u-boot-2017.09-v1.6.2-release
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.6.5-release -> khadas-edges-u-boot-2017.09-v1.6.5-release
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.6.6-release -> khadas-edges-u-boot-2017.09-v1.6.6-release
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.6.7-release -> khadas-edges-u-boot-2017.09-v1.6.7-release
+ * [new tag]		   khadas-edges-u-boot-2017.09-v1.6.8-release -> khadas-edges-u-boot-2017.09-v1.6.8-release
+ * [new tag]		   khadas-vims-u-boot-2015.01-5.15-v1.6-release -> khadas-vims-u-boot-2015.01-5.15-v1.6-release
+ * [new tag]		   khadas-vims-u-boot-2015.01-5.15-v1.6.3-release -> khadas-vims-u-boot-2015.01-5.15-v1.6.3-release
+ * [new tag]		   khadas-vims-u-boot-2015.01-5.15-v1.6.4-release -> khadas-vims-u-boot-2015.01-5.15-v1.6.4-release
+ * [new tag]		   khadas-vims-u-boot-2015.01-5.15-v1.6.9-release -> khadas-vims-u-boot-2015.01-5.15-v1.6.9-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.1-release -> khadas-vims-u-boot-2019.01-v1.1-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.2-release -> khadas-vims-u-boot-2019.01-v1.2-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.4-release -> khadas-vims-u-boot-2019.01-v1.4-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.5-release -> khadas-vims-u-boot-2019.01-v1.5-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.5.1-release -> khadas-vims-u-boot-2019.01-v1.5.1-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.5.2-release -> khadas-vims-u-boot-2019.01-v1.5.2-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.6-release -> khadas-vims-u-boot-2019.01-v1.6-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.6.4-release -> khadas-vims-u-boot-2019.01-v1.6.4-release
+ * [new tag]		   khadas-vims-u-boot-2019.01-v1.6.9-release -> khadas-vims-u-boot-2019.01-v1.6.9-release
+ * [new tag]		   khadas-vims-u-boot-v2015.01-v1.1-release -> khadas-vims-u-boot-v2015.01-v1.1-release
+ * [new tag]		   khadas-vims-u-boot-v2015.01-v1.1.1-release -> khadas-vims-u-boot-v2015.01-v1.1.1-release
+ * [new tag]		   khadas-vims-u-boot-v2015.01-v1.1.2-release -> khadas-vims-u-boot-v2015.01-v1.1.2-release
+ * [new tag]		   khadas-vims-u-boot-v2015.01-v1.3-release -> khadas-vims-u-boot-v2015.01-v1.3-release
+ * [new tag]		   khadas-vims-u-boot-v2015.01-v1.4-release -> khadas-vims-u-boot-v2015.01-v1.4-release
+ * [new tag]		   khadas-vims-u-boot-v2015.01-v1.5-release -> khadas-vims-u-boot-v2015.01-v1.5-release
+ * [new tag]		   khadas-vims-u-boot-v2015.01-v1.5.2-release -> khadas-vims-u-boot-v2015.01-v1.5.2-release
+ * [new tag]		   khadas-vims-v0.9.3-release  -> khadas-vims-v0.9.3-release
+ * [new tag]		   khadas-vims-v0.9.5-release  -> khadas-vims-v0.9.5-release
+ * [new tag]		   khadas-vims-v0.9.6-release  -> khadas-vims-v0.9.6-release
+ * [new tag]		   khadas-vims-v0.9.7-release  -> khadas-vims-v0.9.7-release
+ * [new tag]		   khadas-vims-v0.9.8-release  -> khadas-vims-v0.9.8-release
+ * [new tag]		   khadas-vims-v1.0-release    -> khadas-vims-v1.0-release
+ * [new tag]		   khadas-vims-v1.0.1-release  -> khadas-vims-v1.0.1-release
+ * [new tag]		   khadas-vims-v1.0.10-release -> khadas-vims-v1.0.10-release
+ * [new tag]		   khadas-vims-v1.0.11-release -> khadas-vims-v1.0.11-release
+ * [new tag]		   khadas-vims-v1.0.2-release  -> khadas-vims-v1.0.2-release
+ * [new tag]		   khadas-vims-v1.0.3-release  -> khadas-vims-v1.0.3-release
+ * [new tag]		   khadas-vims-v1.0.4-release  -> khadas-vims-v1.0.4-release
+ * [new tag]		   khadas-vims-v1.0.5-release  -> khadas-vims-v1.0.5-release
+ * [new tag]		   khadas-vims-v1.0.6-release  -> khadas-vims-v1.0.6-release
+ * [new tag]		   khadas-vims-v1.0.7-release  -> khadas-vims-v1.0.7-release
+ * [new tag]		   khadas-vims-v1.0.8-release  -> khadas-vims-v1.0.8-release
+ * [new tag]		   khadas-vims-v1.0.9-release  -> khadas-vims-v1.0.9-release
+Already up to date.
+/home/khadas/fenix/build/u-boot
+Info: Build u-boot...
+make[1]: Entering directory '/home/khadas/fenix/build/u-boot'
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  SHIPPED scripts/kconfig/zconf.tab.c
+  SHIPPED scripts/kconfig/zconf.lex.c
+  SHIPPED scripts/kconfig/zconf.hash.c
+  HOSTCC  scripts/kconfig/zconf.tab.o
+In file included from scripts/kconfig/zconf.tab.c:2470:
+In function ‘dep_stack_insert’,
+    inlined from ‘sym_check_print_recursive’ at scripts/kconfig/symbol.c:1123:3,
+    inlined from ‘sym_check_deps’ at scripts/kconfig/symbol.c:1300:3:
+scripts/kconfig/symbol.c:1099:19: warning: storing the address of local variable ‘cv_stack’ in ‘check_top’ [-Wdangling-pointer=]
+ 1099 |		check_top = stack;
+      |		~~~~~~~~~~^~~~~~~
+scripts/kconfig/symbol.c: In function ‘sym_check_deps’:
+scripts/kconfig/symbol.c:1120:26: note: ‘cv_stack’ declared here
+ 1120 |		struct dep_stack cv_stack;
+      |				 ^~~~~~~~
+scripts/kconfig/symbol.c:1090:4: note: ‘check_top’ declared here
+ 1090 | } *check_top;
+      |	   ^~~~~~~~~
+  HOSTLD  scripts/kconfig/conf
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/khadas/fenix/build/u-boot'
+make[1]: Entering directory '/home/khadas/fenix/build/u-boot'
+scripts/kconfig/conf  --silentoldconfig Kconfig
+  CHK	  include/config.h
+  UPD	  include/config.h
+  CFG	  u-boot.cfg
+  GEN	  include/autoconf.mk.dep
+  CFG	  spl/u-boot.cfg
+  CFG	  tpl/u-boot.cfg
+  GEN	  tpl/include/autoconf.mk
+  GEN	  include/autoconf.mk
+  GEN	  spl/include/autoconf.mk
+  CHK	  include/config/uboot.release
+  CHK	  include/generated/timestamp_autogenerated.h
+  UPD	  include/generated/timestamp_autogenerated.h
+  UPD	  include/config/uboot.release
+  CHK	  include/generated/version_autogenerated.h
+  HOSTCC  scripts/dtc/dtc.o
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtc/fstree.o
+  HOSTCC  scripts/dtc/data.o
+  HOSTCC  scripts/dtc/livetree.o
+  HOSTCC  scripts/dtc/treesource.o
+  UPD	  include/generated/version_autogenerated.h
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTCC  scripts/dtc/checks.o
+  HOSTCC  scripts/dtc/util.o
+  SHIPPED scripts/dtc/dtc-lexer.lex.c
+  SHIPPED scripts/dtc/dtc-parser.tab.h
+  SHIPPED scripts/dtc/dtc-parser.tab.c
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  CC	  lib/asm-offsets.s
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  CC	  arch/arm/lib/asm-offsets.s
+  CHK	  include/generated/generic-asm-offsets.h
+  UPD	  include/generated/generic-asm-offsets.h
+  CHK	  include/generated/asm-offsets.h
+  HOSTLD  scripts/dtc/dtc
+  UPD	  include/generated/asm-offsets.h
+  CHK	  include/config.h
+  CFG	  u-boot.cfg
+  LDS	  u-boot.lds
+  HOSTCC  tools/gen_eth_addr
+  HOSTCC  tools/gen_ethaddr_crc.o
+  WRAP	  tools/lib/crc8.c
+  HOSTCC  tools/mkenvimage.o
+  HOSTCC  tools/os_support.o
+  WRAP	  tools/lib/crc32.c
+  HOSTCC  tools/aisimage.o
+  HOSTCC  tools/atmelimage.o
+  WRAP	  tools/common/bootm.c
+  HOSTCC  tools/default_image.o
+  WRAP	  tools/lib/fdtdec_common.c
+  WRAP	  tools/lib/fdtdec.c
+  HOSTCC  tools/fit_common.o
+  HOSTCC  tools/fit_image.o
+  WRAP	  tools/common/image-fit.c
+  HOSTCC  tools/image-host.o
+  WRAP	  tools/common/image.c
+  HOSTCC  tools/imagetool.o
+  HOSTCC  tools/imximage.o
+  HOSTCC  tools/kwbimage.o
+  WRAP	  tools/lib/md5.c
+  HOSTCC  tools/lpc32xximage.o
+  HOSTCC  tools/mxsimage.o
+  HOSTCC  tools/omapimage.o
+  HOSTCC  tools/pblimage.o
+  HOSTCC  tools/pbl_crc32.o
+  HOSTCC  tools/vybridimage.o
+  WRAP	  tools/lib/rc4.c
+  HOSTCC  tools/rkcommon.o
+  HOSTCC  tools/rkimage.o
+  HOSTCC  tools/rknand.o
+  HOSTCC  tools/rksd.o
+  HOSTCC  tools/rkspi.o
+  HOSTCC  tools/socfpgaimage.o
+  WRAP	  tools/lib/sha1.c
+  WRAP	  tools/lib/sha256.c
+  WRAP	  tools/common/hash.c
+  HOSTCC  tools/ublimage.o
+  HOSTCC  tools/zynqimage.o
+  HOSTCC  tools/zynqmpimage.o
+  HOSTCC  tools/libfdt/fdt.o
+  HOSTCC  tools/libfdt/fdt_wip.o
+  HOSTCC  tools/libfdt/fdt_sw.o
+  HOSTCC  tools/libfdt/fdt_rw.o
+  HOSTCC  tools/libfdt/fdt_strerror.o
+  HOSTCC  tools/libfdt/fdt_empty_tree.o
+  HOSTCC  tools/libfdt/fdt_addresses.o
+  HOSTCC  tools/libfdt/fdt_overlay.o
+  WRAP	  tools/lib/libfdt/fdt_ro.c
+  WRAP	  tools/lib/libfdt/fdt_region.c
+  HOSTCC  tools/gpimage.o
+  HOSTCC  tools/gpimage-common.o
+  HOSTCC  tools/dumpimage.o
+  HOSTCC  tools/mkimage.o
+  HOSTCC  tools/rockchip/resource_tool.o
+  HOSTCC  tools/rockchip/bmp2gray16.o
+  HOSTCC  tools/proftool
+  HOSTCC  tools/relocate-rela
+  HOSTCC  tools/fdtgrep.o
+  HOSTCC  tools/lib/crc8.o
+  HOSTCC  tools/lib/crc32.o
+  HOSTCC  tools/common/bootm.o
+tools/rockchip/bmp2gray16.c: In function ‘usage’:
+tools/rockchip/bmp2gray16.c:121:25: warning: ‘%s’ directive argument is not a nul-terminated string [-Wformat-overflow=]
+  121 |		printf("Version %s (zwp@rock-chips.com)\n", version);
+      |				^~			    ~~~~~~~
+tools/rockchip/bmp2gray16.c:109:19: note: referenced argument declared here
+  109 | static const char version[4] = "1.00";
+      |			  ^~~~~~~
+  HOSTCC  tools/lib/fdtdec_common.o
+  HOSTCC  tools/lib/fdtdec.o
+  HOSTCC  tools/common/image-fit.o
+  HOSTCC  tools/common/image.o
+  HOSTCC  tools/lib/md5.o
+  HOSTCC  tools/lib/rc4.o
+  HOSTCC  tools/lib/sha1.o
+  HOSTCC  tools/lib/sha256.o
+  HOSTCC  tools/common/hash.o
+  HOSTCC  tools/lib/libfdt/fdt_ro.o
+  HOSTCC  tools/lib/libfdt/fdt_region.o
+  HOSTLD  tools/bmp2gray16
+  HOSTLD  tools/gen_ethaddr_crc
+  HOSTLD  tools/mkenvimage
+  HOSTLD  tools/fdtgrep
+  HOSTLD  tools/resource_tool
+  HOSTLD  tools/dumpimage
+  HOSTLD  tools/mkimage
+  LD	  arch/arm/cpu/built-in.o
+  CC	  board/khadas/rk3588s-khadas-edge2/kedge2.o
+  CC	  arch/arm/cpu/armv8/cpu.o
+  CC	  arch/arm/cpu/armv8/generic_timer.o
+  CC	  arch/arm/cpu/armv8/cache_v8.o
+  AS	  arch/arm/cpu/armv8/exceptions.o
+  AS	  arch/arm/lib/crt0_64.o
+  CC	  disk/part.o
+  LD	  drivers/cpu/built-in.o
+  CC	  arch/arm/mach-rockchip/fit_misc.o
+  CC	  disk/part_dos.o
+  CC	  drivers/adc/adc-uclass.o
+  CC	  cmd/boot.o
+  CC	  common/init/board_init.o
+  CC	  cmd/bootm.o
+  AS	  arch/arm/lib/setjmp_aarch64.o
+  AS	  arch/arm/lib/relocate_64.o
+  CC	  arch/arm/lib/bootm-fdt.o
+  CC	  disk/part_efi.o
+  LD	  common/init/built-in.o
+  CC	  common/main.o
+  CC	  arch/arm/mach-rockchip/chip_info.o
+  AS	  arch/arm/mach-rockchip/lowlevel_init.o
+  CC	  arch/arm/mach-rockchip/boot_mode.o
+  LD	  board/khadas/rk3588s-khadas-edge2/built-in.o
+  CC	  arch/arm/mach-rockchip/boot_rkimg.o
+  CC	  drivers/adc/rockchip-saradc-v2.o
+  LD	  drivers/ata/built-in.o
+  CC	  arch/arm/lib/bootm.o
+  AS	  arch/arm/cpu/armv8/cache.o
+  CC	  cmd/help.o
+  CC	  cmd/version.o
+  CC	  cmd/blk_common.o
+  AS	  arch/arm/cpu/armv8/tlb.o
+  AS	  arch/arm/cpu/armv8/transition.o
+  CC	  arch/arm/cpu/armv8/fwcall.o
+  CC	  common/exports.o
+  CC	  drivers/block/blk-uclass.o
+  CC	  disk/part_rkram.o
+  CC	  drivers/clk/clk-uclass.o
+  CC	  drivers/clk/clk_fixed_rate.o
+  CC	  cmd/blk.o
+  LD	  drivers/adc/built-in.o
+  CC	  drivers/clk/rockchip/clk_pll.o
+  CC	  drivers/clk/rockchip/clk_rk3588.o
+  CC	  arch/arm/lib/zimage.o
+  CC	  arch/arm/mach-rockchip/board.o
+  CC	  arch/arm/mach-rockchip/iomem.o
+  CC	  arch/arm/cpu/armv8/cpu-dt.o
+  CC	  common/hash.o
+  LD	  disk/built-in.o
+  CC	  arch/arm/mach-rockchip/memblk.o
+  CC	  cmd/source.o
+  CC	  arch/arm/mach-rockchip/hotkey.o
+  CC	  arch/arm/lib/sections.o
+  LD	  drivers/block/built-in.o
+  AS	  arch/arm/cpu/armv8/smccc-call.o
+  CC	  drivers/core/device.o
+  CC	  arch/arm/lib/stack.o
+  CC	  cmd/bdinfo.o
+  CC	  arch/arm/cpu/armv8/../armv7/suspend.o
+  AS	  arch/arm/lib/gic_64.o
+  CC	  arch/arm/mach-rockchip/kernel_dtb.o
+  CC	  common/cli_hush.o
+  CC	  cmd/boot_android.o
+  AS	  arch/arm/cpu/armv8/sleep.o
+  AS	  arch/arm/cpu/armv8/start.o
+  CC	  arch/arm/mach-rockchip/fit.o
+  LD	  drivers/clk/rockchip/built-in.o
+  CC	  arch/arm/lib/interrupts_64.o
+  LD	  drivers/clk/tegra/built-in.o
+  CC	  arch/arm/lib/stacktrace_64.o
+  CC	  drivers/clk/clk_scmi.o
+  CC	  drivers/core/fdtaddr.o
+  CC	  drivers/crypto/crypto-uclass.o
+  CC	  cmd/android.o
+  LD	  arch/arm/cpu/armv8/built-in.o
+  CC	  drivers/core/lists.o
+  CC	  cmd/bootfit.o
+  CC	  common/autoboot.o
+  CC	  arch/arm/mach-rockchip/rockchip_smccc.o
+  CC	  drivers/crypto/fsl/sec.o
+  CC	  drivers/core/root.o
+  CC	  arch/arm/lib/cache.o
+  LD	  drivers/dma/built-in.o
+  CC	  cmd/bootz.o
+  CC	  cmd/booti.o
+  LD	  drivers/clk/built-in.o
+  LD	  drivers/dfu/built-in.o
+  CC	  drivers/core/uclass.o
+  CC	  drivers/gpio/gpio-uclass.o
+  CC	  drivers/crypto/rockchip/crypto_v2.o
+  CC	  drivers/i2c/i2c-uclass.o
+  CC	  common/board_f.o
+  CC	  drivers/core/util.o
+  LD	  drivers/crypto/fsl/built-in.o
+  CC	  common/board_r.o
+  CC	  arch/arm/mach-rockchip/vendor.o
+  CC	  arch/arm/lib/psci-dt.o
+  CC	  arch/arm/mach-rockchip/vendor_misc.o
+  CC	  cmd/console.o
+  AR	  arch/arm/lib/lib.a
+  CC	  drivers/core/device-remove.o
+  CC	  arch/arm/mach-rockchip/resource_img.o
+  CC	  drivers/i2c/rk_i2c.o
+  CC	  drivers/crypto/rockchip/crypto_hash_cache.o
+  LD	  arch/arm/lib/built-in.o
+  CC	  drivers/core/simple-bus.o
+  CC	  drivers/i2c/muxes/i2c-mux-uclass.o
+  CC	  drivers/firmware/firmware-uclass.o
+  CC	  cmd/charge.o
+  CC	  drivers/i2c/muxes/max96745.o
+  CC	  drivers/gpio/rk_gpio.o
+  CC	  common/board_info.o
+  CC	  drivers/i2c/muxes/max96755f.o
+  CC	  drivers/core/dump.o
+  CC	  arch/arm/mach-rockchip/resource_hwid.o
+  CC	  arch/arm/mach-rockchip/param.o
+  CC	  drivers/crypto/rockchip/crypto_v2_pka.o
+  CC	  arch/arm/mach-rockchip/sdram.o
+  CC	  drivers/firmware/psci.o
+  CC	  cmd/crypto_sum.o
+  CC	  drivers/firmware/scmi/scmi_agent-uclass.o
+  CC	  common/bootm.o
+  CC	  drivers/crypto/rsa_mod_exp/mod_exp_uclass.o
+  LD	  drivers/gpio/built-in.o
+  CC	  drivers/crypto/rsa_mod_exp/mod_exp_sw.o
+  LD	  drivers/i2c/muxes/built-in.o
+  CC	  drivers/core/regmap.o
+  LD	  drivers/i2c/built-in.o
+  CC	  drivers/input/key-uclass.o
+  CC	  cmd/dtimg.o
+  CC	  drivers/input/input.o
+  CC	  drivers/crypto/rockchip/crypto_v2_util.o
+  CC	  drivers/firmware/scmi/smt.o
+  CC	  arch/arm/mach-rockchip/rk3588/syscon_rk3588.o
+  CC	  cmd/echo.o
+  CC	  cmd/exit.o
+  LD	  drivers/crypto/rsa_mod_exp/built-in.o
+  CC	  drivers/irq/irq-gic.o
+  CC	  drivers/input/key_matrix.o
+  CC	  drivers/core/syscon-uclass.o
+  CC	  common/bootm_os.o
+  CC	  drivers/irq/irq-gpio-v2.o
+  LD	  drivers/crypto/rockchip/built-in.o
+  CC	  drivers/irq/irq-generic.o
+  CC	  arch/arm/mach-rockchip/rk3588/rk3588.o
+  LD	  drivers/crypto/built-in.o
+  CC	  drivers/firmware/scmi/smccc_agent.o
+  CC	  cmd/ext4.o
+  CC	  cmd/ext2.o
+  CC	  cmd/fat.o
+  CC	  drivers/core/of_access.o
+  CC	  drivers/input/rk8xx_pwrkey.o
+  CC	  cmd/fdt.o
+  CC	  drivers/mtd/mtdcore.o
+  CC	  common/fdt_support.o
+  CC	  cmd/fs.o
+  CC	  drivers/mtd/mtd_uboot.o
+  LD	  drivers/firmware/scmi/built-in.o
+  CC	  drivers/core/of_addr.o
+  CC	  drivers/mtd/mtd-uclass.o
+  LD	  drivers/firmware/built-in.o
+  CC	  drivers/irq/irq-gpio-switch.o
+  CC	  arch/arm/mach-rockchip/rk3588/clk_rk3588.o
+  CC	  drivers/irq/virq.o
+  CC	  drivers/input/adc_key.o
+  CC	  drivers/mtd/mtd_blk.o
+  CC	  cmd/gpio.o
+  CC	  cmd/i2c.o
+  CC	  cmd/load.o
+  CC	  cmd/download.o
+  CC	  drivers/core/read.o
+  CC	  drivers/mtd/nand/core.o
+  LD	  arch/arm/mach-rockchip/rk3588/built-in.o
+  CC	  common/miiphyutil.o
+  CC	  arch/arm/mach-rockchip/rk_atags.o
+  CC	  drivers/mtd/nand/bbt.o
+  LD	  drivers/irq/built-in.o
+  LD	  drivers/input/built-in.o
+  CC	  arch/arm/mach-rockchip/pstore.o
+  CC	  drivers/mtd/nand/spi/gigadevice.o
+  CC	  drivers/mtd/nand/spi/macronix.o
+  CC	  cmd/mem.o
+  LD	  drivers/mailbox/built-in.o
+  LD	  drivers/memory/built-in.o
+  CC	  cmd/mii.o
+  CC	  drivers/misc/misc-uclass.o
+  CC	  drivers/misc/misc_otp.o
+  CC	  drivers/core/of_extra.o
+  CC	  drivers/core/ofnode.o
+  CC	  drivers/mtd/nand/spi/micron.o
+  CC	  common/usb.o
+  CC	  cmd/mdio.o
+  LD	  arch/arm/mach-rockchip/built-in.o
+  LD	  drivers/mtd/nand/nandcore.o
+  CC	  drivers/core/read_extra.o
+  LD	  drivers/mtd/onenand/built-in.o
+  CC	  drivers/misc/misc_decompress.o
+  CC	  drivers/misc/rockchip-otp.o
+  CC	  drivers/misc/rockchip_decompress.o
+  LD	  drivers/pcmcia/built-in.o
+  CC	  drivers/mmc/mmc.o
+  CC	  drivers/mmc/mmc-uclass.o
+  CC	  drivers/mmc/mmc_write.o
+  CC	  drivers/mmc/dw_mmc.o
+  CC	  drivers/mtd/nand/spi/toshiba.o
+  CC	  cmd/mmc.o
+  CC	  drivers/mtd/nand/spi/winbond.o
+  CC	  common/usb_hub.o
+  LD	  drivers/core/built-in.o
+  CC	  drivers/mmc/rockchip_dw_mmc.o
+  CC	  common/usb_storage.o
+  LD	  drivers/misc/built-in.o
+  CC	  drivers/mmc/rpmb.o
+  CC	  common/iomux.o
+  CC	  cmd/mtd_blk.o
+  CC	  cmd/net.o
+  CC	  drivers/mtd/spi/sf-uclass.o
+  CC	  drivers/mmc/sdhci.o
+  CC	  drivers/mtd/nand/spi/dosilicon.o
+  CC	  drivers/mtd/nand/spi/esmt.o
+  CC	  drivers/mmc/rockchip_sdhci.o
+  CC	  drivers/mtd/spi/sf_probe.o
+  CC	  cmd/part.o
+  CC	  drivers/mtd/spi/spi-nor-ids.o
+  CC	  drivers/mtd/spi/spi-nor-core.o
+  CC	  common/splash.o
+  CC	  cmd/pcmcia.o
+  CC	  cmd/pinmux.o
+  CC	  cmd/pxe.o
+  CC	  common/menu.o
+  CC	  drivers/mtd/nand/spi/xincun.o
+  CC	  common/cli_readline.o
+  CC	  drivers/phy/phy-uclass.o
+  CC	  drivers/phy/phy-rockchip-inno-usb2.o
+  CC	  drivers/phy/phy-rockchip-samsung-hdptx.o
+  LD	  drivers/mmc/built-in.o
+  CC	  drivers/phy/phy-rockchip-usbdp.o
+  CC	  common/cli_simple.o
+  LD	  drivers/phy/marvell/built-in.o
+  CC	  drivers/mtd/spi/sf_mtd.o
+  CC	  drivers/net/eth-phy-uclass.o
+  CC	  drivers/net/gmac_rockchip.o
+  CC	  drivers/mtd/nand/spi/xtx.o
+  CC	  drivers/mtd/nand/spi/hyf.o
+  CC	  drivers/net/dwc_eth_qos.o
+  LD	  drivers/mtd/spi/spi-nor.o
+  CC	  drivers/mtd/nand/spi/fmsh.o
+  CC	  common/edid.o
+  CC	  cmd/rockusb.o
+  CC	  drivers/mtd/nand/spi/foresee.o
+  CC	  drivers/mtd/nand/spi/biwin.o
+  LD	  drivers/mtd/spi/built-in.o
+  CC	  drivers/mtd/nand/spi/etron.o
+  CC	  cmd/sf.o
+  LD	  drivers/phy/built-in.o
+  CC	  cmd/spi.o
+  CC	  drivers/mtd/nand/spi/jsc.o
+  CC	  drivers/pinctrl/pinctrl-uclass.o
+  CC	  drivers/mtd/nand/spi/silicongo.o
+  CC	  drivers/mtd/nand/spi/unim.o
+  CC	  drivers/mtd/nand/spi/skyhigh.o
+  CC	  common/bouncebuf.o
+  CC	  drivers/pinctrl/pinctrl-generic.o
+  LD	  drivers/net/built-in.o
+  CC	  drivers/power/power_delivery/power_delivery_uclass.o
+  CC	  drivers/net/phy/phy.o
+  CC	  drivers/pwm/pwm-uclass.o
+  CC	  drivers/pwm/rk_pwm.o
+  CC	  cmd/test.o
+  CC	  drivers/ram/ram-uclass.o
+  CC	  drivers/reset/reset-uclass.o
+  LD	  drivers/pinctrl/nxp/built-in.o
+  CC	  drivers/power/power_delivery/tcpm.o
+  CC	  drivers/mtd/nand/spi/gsto.o
+  LD	  drivers/pci/built-in.o
+  CC	  drivers/power/power_delivery/fusb302.o
+  CC	  drivers/pinctrl/rockchip/pinctrl-rockchip-core.o
+  CC	  drivers/pinctrl/pinctrl-rockchip.o
+  CC	  drivers/pinctrl/pinctrl-max96745.o
+  CC	  cmd/usb.o
+  CC	  drivers/ram/rockchip/sdram_rk3588.o
+  LD	  drivers/pwm/built-in.o
+  CC	  drivers/reset/reset-rockchip.o
+  LD	  drivers/net/phy/built-in.o
+  CC	  drivers/ram/ramdisk-uclass.o
+  CC	  drivers/pinctrl/pinctrl-max96755f.o
+  CC	  drivers/mtd/nand/spi/core.o
+  CC	  common/console.o
+  CC	  drivers/pinctrl/rockchip/pinctrl-rk3588.o
+  CC	  common/dlmalloc.o
+  CC	  cmd/disk.o
+  LD	  drivers/ram/rockchip/built-in.o
+  CC	  drivers/ram/ramdisk_ro.o
+  CC	  drivers/power/power_delivery/tcpci.o
+  CC	  drivers/power/power_delivery/tcpci_husb311.o
+  LD	  drivers/reset/built-in.o
+  CC	  drivers/rng/rng-uclass.o
+  CC	  drivers/rng/rockchip_rng.o
+  CC	  cmd/fastboot.o
+  CC	  drivers/rng/rockchip_rand.o
+  CC	  drivers/rtc/date.o
+  LD	  drivers/scsi/built-in.o
+  LD	  drivers/pinctrl/rockchip/built-in.o
+  LD	  drivers/ram/built-in.o
+  CC	  drivers/power/charge-display-uclass.o
+  LD	  drivers/mtd/nand/spi/spinand.o
+  LD	  drivers/pinctrl/built-in.o
+  LD	  drivers/soc/built-in.o
+  LD	  drivers/mtd/nand/spi/built-in.o
+  CC	  drivers/power/charge_animation.o
+  CC	  common/malloc_simple.o
+  CC	  common/image.o
+  CC	  cmd/usb_mass_storage.o
+  CC	  cmd/gpt.o
+  CC	  cmd/optee.o
+  CC	  drivers/power/rockchip_pm.o
+  LD	  drivers/power/power_delivery/built-in.o
+  LD	  drivers/rng/built-in.o
+  LD	  drivers/rtc/built-in.o
+  LD	  drivers/power/battery/built-in.o
+  CC	  cmd/kbi.o
+  LD	  drivers/sound/built-in.o
+  CC	  drivers/power/charge/bq25700_charger.o
+  LD	  drivers/spmi/built-in.o
+  LD	  drivers/mtd/nand/built-in.o
+  CC	  drivers/sysreset/sysreset-uclass.o
+  LD	  drivers/thermal/built-in.o
+  LD	  drivers/tpm/built-in.o
+  LD	  drivers/mtd/built-in.o
+  LD	  drivers/ufs/built-in.o
+  LD	  drivers/watchdog/built-in.o
+  CC	  drivers/video/display-uclass.o
+  LD	  drivers/power/domain/built-in.o
+  CC	  drivers/video/backlight-uclass.o
+  CC	  common/image-android.o
+  CC	  common/android_bootloader.o
+  CC	  common/image-fdt.o
+  CC	  cmd/rkimgtest.o
+  CC	  common/image-fit.o
+  LD	  drivers/power/built-in.o
+  CC	  cmd/atags.o
+  CC	  cmd/nvedit.o
+  CC	  drivers/power/charge/bq25890_charger.o
+  CC	  drivers/sysreset/sysreset-syscon-reboot.o
+  CC	  drivers/sysreset/sysreset_psci.o
+  CC	  drivers/sysreset/sysreset_rockchip.o
+  CC	  drivers/video/panel-uclass.o
+  LD	  drivers/power/dvfs/built-in.o
+  CC	  drivers/power/fuel_gauge/fuel_gauge_uclass.o
+  CC	  common/memsize.o
+  CC	  common/stdio.o
+  CC	  drivers/power/charge/sc8551_charger.o
+  CC	  common/image-android-dt.o
+  CC	  drivers/power/charge/sgm41542_charger.o
+  CC	  drivers/power/fuel_gauge/fg_cw201x.o
+  CC	  drivers/video/simple_panel.o
+  LD	  drivers/sysreset/built-in.o
+  CC	  common/image-sparse.o
+  LD	  cmd/built-in.o
+  LD	  drivers/power/io-domain/built-in.o
+  CC	  drivers/video/video-uclass.o
+  LD	  drivers/power/mfd/built-in.o
+  CC	  drivers/power/fuel_gauge/fg_cw221x.o
+  CC	  drivers/video/vidconsole-uclass.o
+  CC	  drivers/video/video_bmp.o
+  CC	  drivers/video/pwm_backlight.o
+  CC	  drivers/video/console_normal.o
+  CC	  drivers/video/bridge/video-bridge-uclass.o
+  LD	  drivers/power/charge/built-in.o
+  CC	  drivers/video/drm/drm_modes.o
+  CC	  common/fb_mmc.o
+  CC	  drivers/video/drm/rockchip_display.o
+  CC	  drivers/video/drm/rockchip_display_helper.o
+  CC	  common/fb_common.o
+  CC	  common/cli.o
+  LD	  drivers/power/fuel_gauge/built-in.o
+  CC	  drivers/power/pmic/pmic-uclass.o
+  CC	  drivers/power/regulator/regulator-uclass.o
+  CC	  drivers/power/pmic/rk8xx_spi.o
+  CC	  drivers/power/regulator/pwm_regulator.o
+  CC	  drivers/power/regulator/fixed.o
+  LD	  drivers/video/bridge/built-in.o
+  CC	  drivers/power/regulator/gpio-regulator.o
+  CC	  drivers/power/regulator/rk860x_regulator.o
+  CC	  drivers/video/drm/rockchip_crtc.o
+  CC	  drivers/video/drm/rockchip_phy.o
+  CC	  drivers/serial/serial-uclass.o
+  CC	  common/command.o
+  CC	  drivers/spi/spi-uclass.o
+  LD	  drivers/usb/cdns3/built-in.o
+  CC	  common/s_record.o
+  LD	  drivers/power/pmic/built-in.o
+  CC	  drivers/video/drm/rockchip_bridge.o
+  CC	  common/write_keybox.o
+  CC	  drivers/spi/spi-mem.o
+  CC	  drivers/spi/rk_spi.o
+  CC	  drivers/spi/rockchip_sfc.o
+  LD	  drivers/power/regulator/built-in.o
+  CC	  drivers/video/drm/rockchip_vop.o
+  CC	  drivers/usb/common/common.o
+  CC	  drivers/serial/ns16550.o
+  CC	  drivers/video/drm/rockchip_vop_reg.o
+  LD	  drivers/video/sunxi/built-in.o
+  CC	  drivers/video/drm/rockchip_vop2.o
+  CC	  drivers/video/drm/bmp_helper.o
+  CC	  common/keymaster.o
+  CC	  drivers/video/drm/rockchip_connector.o
+  CC	  drivers/video/drm/rockchip_post_csc.o
+  CC	  common/attestation_key.o
+  CC	  drivers/video/drm/libnsbmp.o
+  LD	  drivers/usb/common/built-in.o
+  CC	  drivers/usb/dwc3/core.o
+  LD	  drivers/spi/built-in.o
+  LD	  drivers/usb/emul/built-in.o
+  CC	  drivers/usb/dwc3/gadget.o
+  CC	  drivers/usb/dwc3/ep0.o
+  LD	  drivers/usb/eth/built-in.o
+  CC	  common/id_attestation.o
+  CC	  drivers/usb/gadget/epautoconf.o
+  CC	  drivers/usb/gadget/config.o
+  LD	  drivers/serial/built-in.o
+  CC	  drivers/usb/gadget/usbstring.o
+  CC	  drivers/usb/gadget/udc/udc-core.o
+  CC	  drivers/usb/gadget/udc/udc-uclass.o
+  LD	  common/built-in.o
+  CC	  drivers/usb/host/usb-uclass.o
+  CC	  drivers/video/drm/drm_mipi_dsi.o
+  CC	  drivers/video/drm/drm_dp_helper.o
+  CC	  drivers/usb/gadget/g_dnl.o
+  CC	  drivers/usb/dwc3/dwc3-generic.o
+  CC	  drivers/usb/gadget/f_mass_storage.o
+  LD	  drivers/usb/gadget/udc/built-in.o
+  LD	  drivers/usb/dwc3/dwc3.o
+  CC	  drivers/usb/host/ohci-hcd.o
+  LD	  drivers/usb/musb/built-in.o
+  CC	  drivers/video/drm/drm_dsc.o
+  CC	  drivers/video/drm/max96745.o
+  LD	  drivers/usb/musb-new/built-in.o
+  CC	  drivers/video/drm/max96755f.o
+  LD	  drivers/usb/phy/built-in.o
+  CC	  drivers/usb/host/ohci-generic.o
+  CC	  drivers/usb/host/ehci-hcd.o
+  CC	  drivers/usb/host/ehci-generic.o
+  LD	  drivers/usb/dwc3/built-in.o
+  CC	  drivers/usb/host/xhci.o
+  CC	  drivers/video/drm/panel-rohm-bu18rl82.o
+  CC	  drivers/video/drm/panel-maxim-max96752f.o
+  CC	  drivers/video/drm/dw_mipi_dsi2.o
+  LD	  drivers/usb/ulpi/built-in.o
+  CC	  drivers/video/drm/rockchip_dw_hdmi_qp.o
+  CC	  drivers/usb/gadget/f_fastboot.o
+  CC	  drivers/video/drm/dw_hdmi_qp.o
+  CC	  drivers/usb/host/xhci-mem.o
+  CC	  drivers/video/drm/phy-rockchip-samsung-hdptx-hdmi.o
+  CC	  env/common.o
+  CC	  drivers/usb/host/xhci-ring.o
+  CC	  drivers/usb/host/xhci-dwc3.o
+  CC	  drivers/video/drm/analogix_dp.o
+  CC	  drivers/video/drm/analogix_dp_reg.o
+  CC	  drivers/video/drm/dw-dp.o
+  CC	  env/env.o
+  CC	  fs/fs.o
+  CC	  fs/ext4/ext4fs.o
+  CC	  fs/ext4/ext4_common.o
+  CC	  fs/fat/fat_write.o
+  CC	  lib/avb/libavb/avb_chain_partition_descriptor.o
+  LD	  drivers/usb/gadget/built-in.o
+  LD	  drivers/usb/host/built-in.o
+  CC	  env/attr.o
+  CC	  env/callback.o
+  CC	  lib/avb/libavb_atx/avb_atx_validate.o
+  CC	  lib/avb/libavb_user/avb_ops_user.o
+  CC	  lib/avb/libavb/avb_cmdline.o
+  CC	  lib/avb/libavb_user/avb_user_verification.o
+  CC	  env/flags.o
+  CC	  drivers/video/drm/rockchip_panel.o
+  CC	  drivers/video/drm/rohm-bu18tl82.o
+  CC	  env/nowhere.o
+  CC	  lib/avb/libavb_user/avb_user_verity.o
+  CC	  fs/fs_internal.o
+  CC	  drivers/video/drm/rohm-bu18rl82.o
+  CC	  fs/ext4/dev.o
+  CC	  drivers/video/drm/samsung_mipi_dcphy.o
+  CC	  lib/avb/rk_avb_user/rk_avb_ops_user.o
+  LD	  lib/avb/libavb_atx/built-in.o
+  LD	  lib/avb/libavb_user/built-in.o
+  CC	  lib/avb/libavb/avb_crc32.o
+  CC	  lib/libfdt/fdt.o
+  LD	  env/built-in.o
+  CC	  lib/avb/rk_avb_user/rk_ab_ops_user.o
+  CC	  lib/libxbc/libxbc.o
+  CC	  net/checksum.o
+  LD	  test/built-in.o
+  LD	  fs/fat/built-in.o
+  CC	  lib/avb/libavb/avb_crypto.o
+  LD	  fs/ext4/built-in.o
+  CC	  lib/libfdt/fdt_wip.o
+  CC	  lib/avb/libavb/avb_descriptor.o
+  CC	  net/arp.o
+  LD	  fs/built-in.o
+  CC	  lib/libfdt/fdt_strerror.o
+  CC	  lib/lzma/LzmaDec.o
+  CC	  test/dm/cmd_dm.o
+  CC	  lib/avb/libavb/avb_footer.o
+  CC	  lib/avb/libavb/avb_hash_descriptor.o
+  CC	  lib/libfdt/fdt_sw.o
+  LD	  drivers/video/drm/built-in.o
+  LD	  lib/libxbc/built-in.o
+  CC	  lib/avb/libavb/avb_hashtree_descriptor.o
+  CC	  lib/lzma/LzmaTools.o
+  CC	  lib/avb/libavb/avb_kernel_cmdline_descriptor.o
+  CC	  lib/avb/libavb/avb_property_descriptor.o
+  LD	  lib/avb/rk_avb_user/built-in.o
+  CC	  lib/optee_clientApi/OpteeClientMem.o
+  CC	  lib/rsa/rsa-mod-exp.o
+  CC	  lib/zlib/zlib.o
+  CC	  net/bootp.o
+  CC	  net/eth-uclass.o
+  CC	  net/eth_common.o
+  CC	  lib/avb/libavb/avb_rsa.o
+  CC	  lib/libfdt/fdt_rw.o
+  LD	  test/dm/built-in.o
+  CC	  lib/libfdt/fdt_empty_tree.o
+  CC	  lib/avb/libavb/avb_sha256.o
+  LD	  drivers/video/built-in.o
+  LD	  lib/lzma/built-in.o
+  CC	  lib/avb/libavb/avb_sha512.o
+  CC	  lib/optee_clientApi/OpteeClientApiLib.o
+  CC	  lib/of_live.o
+  LD	  lib/rsa/built-in.o
+  CC	  net/net.o
+  CC	  lib/libfdt/fdt_addresses.o
+  CC	  lib/libfdt/fdt_overlay.o
+  LD	  drivers/built-in.o
+  CC	  lib/libfdt/fdt_ro.o
+  CC	  lib/libfdt/fdt_region.o
+  CC	  lib/charset.o
+  CC	  lib/crc7.o
+  CC	  lib/avb/libavb/avb_sysdeps_posix.o
+  CC	  lib/avb/libavb/avb_slot_verify.o
+  CC	  lib/optee_clientApi/OpteeClientInterface.o
+  CC	  lib/optee_clientApi/OpteeClientSMC.o
+  CC	  lib/avb/libavb/avb_util.o
+  LD	  lib/zlib/built-in.o
+  CC	  lib/optee_clientApi/OpteeClientRPC.o
+  CC	  lib/crc8.o
+  CC	  lib/optee_clientApi/OpteeClientLoadTa.o
+  LD	  lib/libfdt/built-in.o
+  CC	  net/nfs.o
+  AS	  lib/optee_clientApi/tee_smc-arm64.o
+  CC	  lib/avb/libavb/avb_vbmeta_image.o
+  CC	  lib/avb/libavb/avb_version.o
+  CC	  lib/crc16.o
+  CC	  lib/errno_str.o
+  CC	  lib/fdtdec_common.o
+  CC	  lib/initcall.o
+  CC	  lib/optee_clientApi/OpteeClientRkFs_common.o
+  CC	  net/ping.o
+  CC	  net/tftp.o
+  CC	  lib/optee_clientApi/OpteeClientRkNewFs_v1.o
+  CC	  lib/optee_clientApi/OpteeClientRkNewFs_v2.o
+  CC	  lib/lmb.o
+  CC	  lib/sysmem.o
+  CC	  lib/bidram.o
+  CC	  lib/ldiv.o
+  CC	  lib/lz4_wrapper.o
+  CC	  lib/net_utils.o
+  CC	  lib/qsort.o
+  CC	  lib/rc4.o
+  LD	  lib/avb/libavb/built-in.o
+  CC	  lib/sha256.o
+  LD	  net/built-in.o
+  CC	  lib/list_sort.o
+  CC	  lib/sha1.o
+  CC	  lib/gunzip.o
+  CC	  lib/rational.o
+  CC	  lib/fdtdec.o
+  CC	  lib/abuf.o
+  CC	  lib/hashtable.o
+  CC	  lib/errno.o
+  CC	  lib/display_options.o
+  CC	  lib/crc32.o
+  LD	  lib/optee_clientApi/built-in.o
+  CC	  lib/ctype.o
+  CC	  lib/div64.o
+  CC	  lib/hang.o
+  CC	  lib/linux_compat.o
+  CC	  lib/linux_string.o
+  CC	  lib/membuff.o
+  CC	  lib/slre.o
+  CC	  lib/string.o
+  CC	  lib/stdlib.o
+  CC	  lib/tables_csum.o
+  CC	  lib/time.o
+  CC	  lib/hexdump.o
+  CC	  lib/uuid.o
+  CC	  lib/vsprintf.o
+  CC	  lib/panic.o
+  CC	  lib/strto.o
+  CC	  lib/strmhz.o
+  LD	  lib/built-in.o
+  CC	  examples/standalone/stubs.o
+  CC	  examples/standalone/hello_world.o
+  CC	  examples/standalone/rkspi.o
+  LD	  examples/standalone/libstubs.o
+  LD	  examples/standalone/hello_world
+  LD	  examples/standalone/rkspi
+/home/khadas/fenix/build/toolchains/gcc-linaro-aarch64-linux-gnu/bin/aarch64-linux-gnu-ld.bfd: warning: cannot find entry symbol rkspi; defaulting to 000000000c100000
+  OBJCOPY examples/standalone/hello_world.srec
+  OBJCOPY examples/standalone/hello_world.bin
+  OBJCOPY examples/standalone/rkspi.srec
+  OBJCOPY examples/standalone/rkspi.bin
+  LD	  u-boot
+  OBJCOPY u-boot.srec
+  OBJCOPY u-boot-nodtb.bin
+  SYM	  u-boot.sym
+  DTC	  arch/arm/dts/rk3036-sdk.dtb
+  DTC	  arch/arm/dts/rk3066a-mk808.dtb
+  DTC	  arch/arm/dts/rk3126-evb.dtb
+start=$(ccache aarch64-linux-gnu-nm u-boot | grep __rel_dyn_start | cut -f 1 -d ' '); end=$(ccache aarch64-linux-gnu-nm u-boot | grep __rel_dyn_end | cut -f 1 -d ' '); tools/relocate-rela u-boot-nodtb.bin 0x00200000 $start $end
+  DTC	  arch/arm/dts/rk3128-evb.dtb
+  DTC	  arch/arm/dts/rk3188-radxarock.dtb
+  DTC	  arch/arm/dts/rk3288-evb.dtb
+  DTC	  arch/arm/dts/rk3288-fennec.dtb
+  DTC	  arch/arm/dts/rk3288-firefly.dtb
+  DTC	  arch/arm/dts/rk3288-miqi.dtb
+  DTC	  arch/arm/dts/rk3288-phycore-rdk.dtb
+  DTC	  arch/arm/dts/rk3288-popmetal.dtb
+  DTC	  arch/arm/dts/rk3288-rock2-square.dtb
+  DTC	  arch/arm/dts/rk3288-tinker.dtb
+  DTC	  arch/arm/dts/rk3288-veyron-jerry.dtb
+  DTC	  arch/arm/dts/rk3288-veyron-mickey.dtb
+  DTC	  arch/arm/dts/rk3288-veyron-minnie.dtb
+  DTC	  arch/arm/dts/rk3288-vyasa.dtb
+  DTC	  arch/arm/dts/rk3308-evb.dtb
+  DTC	  arch/arm/dts/rk3328-evb.dtb
+  DTC	  arch/arm/dts/rk3368-lion.dtb
+  DTC	  arch/arm/dts/rk3368-sheep.dtb
+  DTC	  arch/arm/dts/rk3368-geekbox.dtb
+  DTC	  arch/arm/dts/rk3368-px5-evb.dtb
+  DTC	  arch/arm/dts/rk3399-evb.dtb
+  DTC	  arch/arm/dts/rk3399-firefly.dtb
+  DTC	  arch/arm/dts/rk3399-puma-ddr1333.dtb
+  DTC	  arch/arm/dts/rk3399-puma-ddr1600.dtb
+  DTC	  arch/arm/dts/rk3399-puma-ddr1866.dtb
+  DTC	  arch/arm/dts/rv1106-evb.dtb
+  DTC	  arch/arm/dts/rv1106-evb2.dtb
+  DTC	  arch/arm/dts/rv1108-evb.dtb
+  DTC	  arch/arm/dts/rk3588s-khadas-edge2.dtb
+  FDTGREP dts/dt.dtb
+  FDTGREP dts/dt-spl.dtb
+  FDTGREP dts/dt-tpl.dtb
+  COPY	  u-boot.dtb
+  LD	  spl/arch/arm/cpu/built-in.o
+  CC	  spl/common/init/board_init.o
+  CC	  spl/board/khadas/rk3588s-khadas-edge2/kedge2.o
+  CC	  spl/cmd/nvedit.o
+  CC	  spl/common/spl/spl.o
+  CC	  spl/arch/arm/cpu/armv8/cpu.o
+  CC	  spl/env/common.o
+  CC	  spl/arch/arm/mach-rockchip/fit_misc.o
+  CC	  spl/arch/arm/cpu/armv8/generic_timer.o
+  AS	  spl/arch/arm/lib/crt0_64.o
+  CC	  spl/common/common_fit.o
+  CC	  tpl/arch/arm/mach-rockchip/param.o
+  AS	  spl/arch/arm/lib/setjmp_aarch64.o
+  AS	  spl/arch/arm/lib/relocate_64.o
+  LD	  spl/common/init/built-in.o
+  LD	  tpl/arch/arm/cpu/built-in.o
+  CC	  spl/arch/arm/cpu/armv8/cache_v8.o
+  CC	  tpl/arch/arm/cpu/armv8/cpu.o
+  CC	  spl/arch/arm/lib/bootm-fdt.o
+  CC	  spl/common/fdt_support.o
+  CC	  spl/arch/arm/lib/bootm.o
+  CC	  spl/env/env.o
+  CC	  spl/arch/arm/mach-rockchip/spl_boot_mode.o
+  LD	  spl/board/khadas/rk3588s-khadas-edge2/built-in.o
+  CC	  tpl/arch/arm/mach-rockchip/sdram.o
+  CC	  tpl/arch/arm/mach-rockchip/rk3588/rk3588.o
+  CC	  spl/common/spl/spl_fit.o
+  LD	  spl/cmd/built-in.o
+  CC	  spl/common/spl/spl_mmc.o
+  CC	  tpl/arch/arm/cpu/armv8/generic_timer.o
+  CC	  tpl/arch/arm/cpu/armv8/cache_v8.o
+  LD	  spl/env/built-in.o
+  AS	  tpl/arch/arm/cpu/armv8/exceptions.o
+  CC	  spl/arch/arm/mach-rockchip/param.o
+  CC	  spl/arch/arm/lib/zimage.o
+  AS	  spl/arch/arm/cpu/armv8/exceptions.o
+  CC	  spl/disk/part.o
+  AS	  spl/arch/arm/cpu/armv8/cache.o
+  CC	  spl/lib/avb/rk_avb_user/rk_avb_ops_user.o
+  CC	  spl/lib/libfdt/fdt.o
+  CC	  spl/lib/libfdt/fdt_wip.o
+  CC	  spl/common/spl/spl_mtd_blk.o
+  CC	  tpl/arch/arm/mach-rockchip/rk3588/clk_rk3588.o
+  CC	  spl/common/bouncebuf.o
+  AS	  spl/arch/arm/cpu/armv8/tlb.o
+  CC	  spl/arch/arm/lib/sections.o
+  CC	  spl/common/console.o
+  AS	  tpl/arch/arm/cpu/armv8/cache.o
+  CC	  spl/arch/arm/mach-rockchip/sdram.o
+  CC	  spl/arch/arm/lib/stack.o
+  AS	  spl/arch/arm/cpu/armv8/transition.o
+  CC	  spl/lib/libfdt/fdt_strerror.o
+  AS	  tpl/arch/arm/cpu/armv8/tlb.o
+  CC	  spl/arch/arm/cpu/armv8/fwcall.o
+  AS	  tpl/arch/arm/cpu/armv8/transition.o
+  LD	  tpl/arch/arm/mach-rockchip/rk3588/built-in.o
+  CC	  tpl/arch/arm/mach-rockchip/bootrom.o
+  CC	  tpl/arch/arm/mach-rockchip/tpl.o
+  CC	  spl/lib/libfdt/fdt_sw.o
+  CC	  spl/disk/part_efi.o
+  CC	  tpl/arch/arm/cpu/armv8/fwcall.o
+  CC	  spl/common/spl/spl_atf.o
+  CC	  spl/lib/avb/rk_avb_user/rk_ab_ops_user.o
+  AS	  spl/arch/arm/lib/gic_64.o
+  CC	  spl/arch/arm/mach-rockchip/rk3588/syscon_rk3588.o
+  CC	  spl/arch/arm/lib/interrupts_64.o
+  CC	  spl/arch/arm/cpu/armv8/cpu-dt.o
+  CC	  spl/lib/libfdt/fdt_rw.o
+  CC	  spl/common/dlmalloc.o
+  CC	  spl/arch/arm/lib/stacktrace_64.o
+  CC	  tpl/arch/arm/cpu/armv8/cpu-dt.o
+  CC	  spl/common/spl/spl_ab.o
+  CC	  tpl/arch/arm/mach-rockchip/rk_atags.o
+  LD	  spl/lib/avb/rk_avb_user/built-in.o
+  CC	  spl/arch/arm/mach-rockchip/rk3588/rk3588.o
+  CC	  spl/arch/arm/mach-rockchip/bootrom.o
+  AS	  spl/arch/arm/cpu/armv8/smccc-call.o
+  AS	  spl/arch/arm/cpu/armv8/start.o
+  CC	  spl/lib/libfdt/fdt_empty_tree.o
+  AS	  tpl/arch/arm/cpu/armv8/smccc-call.o
+  CC	  spl/arch/arm/mach-rockchip/rk3588/clk_rk3588.o
+  LD	  spl/disk/built-in.o
+  CC	  spl/arch/arm/mach-rockchip/spl.o
+  CC	  spl/arch/arm/lib/cache.o
+  AS	  tpl/arch/arm/cpu/armv8/start.o
+  CC	  spl/arch/arm/lib/psci-dt.o
+  LD	  spl/arch/arm/cpu/armv8/built-in.o
+  CC	  tpl/arch/arm/mach-rockchip/pstore.o
+  AR	  spl/arch/arm/lib/lib.a
+  CC	  spl/lib/libfdt/fdt_addresses.o
+  CAT	  u-boot-dtb.bin
+  LD	  tpl/arch/arm/cpu/armv8/built-in.o
+  AS	  tpl/arch/arm/lib/crt0_64.o
+  LD	  spl/common/spl/built-in.o
+  AS	  tpl/arch/arm/lib/setjmp_aarch64.o
+  CC	  spl/common/malloc_simple.o
+  CC	  spl/common/image.o
+  CC	  spl/lib/libfdt/fdt_overlay.o
+  CC	  tpl/arch/arm/lib/spl.o
+  CC	  tpl/arch/arm/lib/zimage.o
+  CC	  spl/lib/libfdt/fdt_ro.o
+  CC	  tpl/arch/arm/lib/bootm-fdt.o
+  LD	  spl/arch/arm/lib/built-in.o
+  CC	  spl/arch/arm/mach-rockchip/spl-boot-order.o
+  LD	  tpl/arch/arm/mach-rockchip/built-in.o
+  CC	  tpl/arch/arm/lib/sections.o
+  LD	  spl/arch/arm/mach-rockchip/rk3588/built-in.o
+  CC	  tpl/arch/arm/lib/stack.o
+  CC	  spl/arch/arm/mach-rockchip/rk_atags.o
+  CC	  spl/lib/libfdt/fdt_region.o
+  CC	  spl/drivers/block/blk-uclass.o
+  MKIMAGE u-boot.img
+  CC	  spl/common/image-fdt.o
+  CC	  spl/drivers/clk/clk-uclass.o
+  CC	  spl/drivers/clk/clk_fixed_rate.o
+  AS	  tpl/arch/arm/lib/gic_64.o
+  CC	  spl/common/image-fit.o
+  CC	  spl/drivers/clk/rockchip/clk_pll.o
+  CC	  spl/drivers/clk/rockchip/clk_rk3588.o
+  CC	  tpl/board/khadas/rk3588s-khadas-edge2/kedge2.o
+  CC	  spl/arch/arm/mach-rockchip/pstore.o
+  CC	  tpl/arch/arm/lib/interrupts_64.o
+  LD	  spl/lib/libfdt/built-in.o
+  LD	  spl/drivers/clk/tegra/built-in.o
+  CC	  spl/lib/libxbc/libxbc.o
+  CC	  spl/lib/sha1.o
+  CC	  spl/lib/rsa/rsa-mod-exp.o
+  CC	  spl/lib/sha256.o
+  CC	  spl/common/memsize.o
+  LD	  spl/drivers/block/built-in.o
+  CC	  tpl/arch/arm/lib/stacktrace_64.o
+  LD	  spl/arch/arm/mach-rockchip/built-in.o
+  CC	  spl/common/stdio.o
+  CC	  spl/common/image-android-dt.o
+  LD	  tpl/board/khadas/rk3588s-khadas-edge2/built-in.o
+  MKIMAGE u-boot-dtb.img
+  CC	  spl/drivers/core/device.o
+  LD	  spl/dts/built-in.o
+  COPY	  u-boot.bin
+  ALIGN	  u-boot.bin
+  LD	  spl/lib/libxbc/built-in.o
+  CC	  spl/fs/fs_internal.o
+  CC	  spl/drivers/core/fdtaddr.o
+  LDS	  spl/u-boot-spl.lds
+  LD	  spl/drivers/clk/rockchip/built-in.o
+  CC	  spl/drivers/core/lists.o
+  LD	  spl/lib/rsa/built-in.o
+  LD	  spl/drivers/clk/built-in.o
+  CC	  tpl/arch/arm/lib/cache.o
+  CC	  spl/drivers/core/root.o
+  CC	  spl/lib/fdtdec_common.o
+  CC	  spl/drivers/crypto/crypto-uclass.o
+  CC	  spl/drivers/core/uclass.o
+  CC	  spl/drivers/core/util.o
+  CC	  spl/common/cli.o
+  LD	  spl/fs/built-in.o
+  CC	  spl/drivers/core/simple-bus.o
+  CC	  tpl/arch/arm/lib/psci-dt.o
+  CC	  spl/drivers/core/dump.o
+  CC	  spl/drivers/crypto/fsl/sec.o
+  CC	  spl/lib/fdtdec.o
+  CC	  spl/drivers/core/regmap.o
+  CC	  spl/lib/abuf.o
+  CC	  spl/lib/hashtable.o
+  CC	  spl/lib/errno.o
+  CC	  spl/lib/display_options.o
+  CC	  spl/drivers/core/syscon-uclass.o
+  CC	  spl/common/command.o
+  AR	  tpl/arch/arm/lib/lib.a
+  LD	  tpl/arch/arm/lib/built-in.o
+  CC	  spl/lib/crc32.o
+  CC	  spl/lib/ctype.o
+  LD	  spl/drivers/crypto/fsl/built-in.o
+  CC	  spl/drivers/crypto/rockchip/crypto_v2.o
+  CC	  tpl/common/init/board_init.o
+  CC	  spl/drivers/crypto/rockchip/crypto_hash_cache.o
+  COPY	  spl/u-boot-spl.dtb
+  CC	  spl/lib/div64.o
+  CC	  spl/drivers/crypto/rsa_mod_exp/mod_exp_uclass.o
+  CC	  spl/drivers/crypto/rsa_mod_exp/mod_exp_sw.o
+  CC	  spl/drivers/core/of_access.o
+  CC	  spl/drivers/core/of_addr.o
+  CC	  spl/common/s_record.o
+  CC	  spl/drivers/firmware/firmware-uclass.o
+  CC	  spl/drivers/firmware/psci.o
+  CC	  spl/drivers/core/read.o
+  LD	  tpl/common/init/built-in.o
+  CC	  tpl/disk/part.o
+  CC	  spl/lib/hang.o
+  CC	  spl/drivers/firmware/scmi/scmi_agent-uclass.o
+  CC	  spl/drivers/firmware/scmi/smt.o
+  LD	  spl/drivers/crypto/rsa_mod_exp/built-in.o
+  CC	  spl/drivers/core/of_extra.o
+  CC	  spl/drivers/crypto/rockchip/crypto_v2_pka.o
+  CC	  spl/drivers/crypto/rockchip/crypto_v2_util.o
+  LD	  spl/common/built-in.o
+  CC	  spl/drivers/firmware/scmi/smccc_agent.o
+  CC	  spl/lib/linux_compat.o
+  CC	  spl/lib/linux_string.o
+  CC	  spl/drivers/gpio/gpio-uclass.o
+  CC	  spl/drivers/gpio/rk_gpio.o
+  LD	  tpl/disk/built-in.o
+  CC	  spl/drivers/core/ofnode.o
+  CC	  spl/drivers/misc/misc-uclass.o
+  CC	  spl/drivers/misc/misc_otp.o
+  CC	  spl/lib/membuff.o
+  CC	  tpl/drivers/ram/rockchip/sdram_rk3588.o
+  CC	  spl/drivers/core/read_extra.o
+  CC	  spl/drivers/misc/misc_decompress.o
+  CC	  spl/drivers/misc/rockchip-otp.o
+  LD	  spl/drivers/firmware/scmi/built-in.o
+  LD	  spl/drivers/firmware/built-in.o
+  CC	  spl/lib/slre.o
+  LD	  spl/drivers/crypto/rockchip/built-in.o
+  LD	  tpl/drivers/ram/rockchip/built-in.o
+  LD	  tpl/drivers/ram/built-in.o
+  LD	  spl/drivers/crypto/built-in.o
+  CC	  tpl/drivers/serial/serial-uclass.o
+  LD	  tpl/dts/built-in.o
+  CC	  tpl/drivers/serial/ns16550.o
+  AS	  spl/drivers/misc/rk3588-secure-otp.o
+  CC	  spl/drivers/misc/rockchip_decompress.o
+  CC	  tpl/fs/fs_internal.o
+  CC	  spl/drivers/mtd/mtdcore.o
+  CC	  spl/drivers/mmc/mmc.o
+  LD	  spl/drivers/gpio/built-in.o
+  CC	  spl/drivers/mmc/mmc-uclass.o
+  LDS	  tpl/u-boot-spl.lds
+  CC	  spl/drivers/mtd/spi/sf-uclass.o
+  CC	  spl/drivers/mtd/spi/sf_probe.o
+  LD	  spl/drivers/core/built-in.o
+  CC	  spl/lib/string.o
+  CC	  spl/drivers/pinctrl/pinctrl-uclass.o
+  LD	  tpl/fs/built-in.o
+  CC	  spl/drivers/mtd/mtd_uboot.o
+  CC	  spl/drivers/mtd/mtd-uclass.o
+  CC	  spl/drivers/mtd/mtd_blk.o
+  LD	  spl/drivers/misc/built-in.o
+  CC	  spl/drivers/pinctrl/pinctrl-generic.o
+  LD	  tpl/drivers/serial/built-in.o
+  CC	  spl/lib/stdlib.o
+  LD	  tpl/drivers/built-in.o
+  CC	  spl/drivers/mtd/spi/spi-nor-ids.o
+  CC	  spl/drivers/ram/ram-uclass.o
+  CC	  spl/drivers/mtd/nand/core.o
+  CC	  spl/lib/tables_csum.o
+  CC	  spl/drivers/reset/reset-uclass.o
+  LD	  tpl/u-boot-tpl
+  CC	  spl/drivers/mmc/mmc_write.o
+  CC	  spl/lib/time.o
+  CC	  spl/lib/hexdump.o
+  LD	  spl/drivers/pinctrl/nxp/built-in.o
+  CC	  spl/drivers/reset/reset-rockchip.o
+  OBJCOPY tpl/u-boot-tpl-nodtb.bin
+  COPY	  tpl/u-boot-tpl.bin
+  CC	  spl/drivers/pinctrl/rockchip/pinctrl-rockchip-core.o
+  CC	  spl/lib/uuid.o
+  CC	  spl/drivers/ram/rockchip/sdram_rk3588.o
+  CC	  spl/drivers/mtd/nand/bbt.o
+  CC	  spl/drivers/pinctrl/pinctrl-rockchip.o
+  CC	  spl/drivers/mtd/spi/spi-nor-core.o
+  CC	  spl/drivers/mtd/spi/sf_mtd.o
+  CC	  spl/lib/tiny-printf.o
+  CC	  spl/drivers/mmc/dw_mmc.o
+  CC	  spl/drivers/mmc/rockchip_dw_mmc.o
+  LD	  spl/drivers/reset/built-in.o
+  CC	  spl/drivers/mtd/nand/spi/gigadevice.o
+  CC	  spl/lib/panic.o
+  LD	  spl/drivers/ram/rockchip/built-in.o
+  LD	  spl/drivers/ram/built-in.o
+  CC	  spl/lib/strto.o
+  CC	  spl/drivers/serial/serial-uclass.o
+  CC	  spl/drivers/pinctrl/rockchip/pinctrl-rk3588.o
+  CC	  spl/drivers/mmc/rpmb.o
+  CC	  spl/drivers/mmc/sdhci.o
+  CC	  spl/drivers/spi/spi-uclass.o
+  CC	  spl/drivers/spi/spi-mem.o
+  CC	  spl/drivers/spi/rk_spi.o
+  CC	  spl/drivers/spi/rockchip_sfc.o
+  CC	  spl/drivers/mtd/nand/spi/macronix.o
+  LD	  spl/lib/built-in.o
+  LD	  spl/drivers/mtd/spi/spi-nor.o
+  CC	  spl/drivers/serial/ns16550.o
+  LD	  spl/drivers/mtd/spi/built-in.o
+  CC	  spl/drivers/mtd/nand/spi/micron.o
+  CC	  spl/drivers/mtd/nand/spi/toshiba.o
+  LD	  spl/drivers/pinctrl/rockchip/built-in.o
+  LD	  spl/drivers/pinctrl/built-in.o
+  CC	  spl/drivers/mtd/nand/spi/winbond.o
+  CC	  spl/drivers/mtd/nand/spi/dosilicon.o
+  CC	  spl/drivers/sysreset/sysreset-uclass.o
+  CC	  spl/drivers/mtd/nand/spi/esmt.o
+  CC	  spl/drivers/sysreset/sysreset_rockchip.o
+  CC	  spl/drivers/mmc/rockchip_sdhci.o
+  LD	  spl/drivers/mtd/nand/nandcore.o
+  CC	  spl/drivers/mtd/nand/spi/xincun.o
+  CC	  spl/drivers/mtd/nand/spi/xtx.o
+  LD	  spl/drivers/spi/built-in.o
+  CC	  spl/drivers/mtd/nand/spi/hyf.o
+  CC	  spl/drivers/mtd/nand/spi/fmsh.o
+  CC	  spl/drivers/mtd/nand/spi/foresee.o
+  LD	  spl/drivers/serial/built-in.o
+  CC	  spl/drivers/mtd/nand/spi/biwin.o
+  CC	  spl/drivers/mtd/nand/spi/etron.o
+  CC	  spl/drivers/mtd/nand/spi/jsc.o
+  CC	  spl/drivers/mtd/nand/spi/silicongo.o
+  CC	  spl/drivers/mtd/nand/spi/unim.o
+  LD	  spl/drivers/sysreset/built-in.o
+  CC	  spl/drivers/mtd/nand/spi/skyhigh.o
+  LD	  spl/drivers/mmc/built-in.o
+  CC	  spl/drivers/mtd/nand/spi/gsto.o
+  CC	  spl/drivers/mtd/nand/spi/core.o
+  LD	  spl/drivers/mtd/nand/spi/spinand.o
+  LD	  spl/drivers/mtd/nand/spi/built-in.o
+  LD	  spl/drivers/mtd/nand/built-in.o
+  LD	  spl/drivers/mtd/built-in.o
+  LD	  spl/drivers/built-in.o
+  LD	  spl/u-boot-spl
+  OBJCOPY spl/u-boot-spl-nodtb.bin
+  CAT	  spl/u-boot-spl-dtb.bin
+  COPY	  spl/u-boot-spl.bin
+  CFGCHK  u-boot.cfg
+make[1]: Leaving directory '/home/khadas/fenix/build/u-boot'
+Info: Packing trust.img...
+out:trust.img
+merge success(trust.img)
+/home/khadas/fenix/build/u-boot
+/home/khadas/fenix/build/u-boot
+Info: Packing uboot.img...
+FIT description: FIT Image with ATF/OP-TEE/U-Boot/MCU
+Created:	 Fri Sep 20 13:28:00 2024
+ Image 0 (uboot)
+  Description:	U-Boot
+  Created:	Fri Sep 20 13:28:00 2024
+  Type:		Standalone Program
+  Compression:	uncompressed
+  Data Size:	1396608 Bytes = 1363.88 KiB = 1.33 MiB
+  Architecture: AArch64
+  Load Address: 0x00200000
+  Entry Point:	unavailable
+  Hash algo:	sha256
+  Hash value:	20ecac52891de2ee96a7db3cd3da407f0ac2d1fc73d613667c2327adc41bd8c4
+ Image 1 (atf-1)
+  Description:	ARM Trusted Firmware
+  Created:	Fri Sep 20 13:28:00 2024
+  Type:		Firmware
+  Compression:	uncompressed
+  Data Size:	204860 Bytes = 200.06 KiB = 0.20 MiB
+  Architecture: AArch64
+  Load Address: 0x00040000
+  Hash algo:	sha256
+  Hash value:	64122e141b75b3618713522722336c28342addc95d8c23b88bb05bff3e84681e
+ Image 2 (atf-2)
+  Description:	ARM Trusted Firmware
+  Created:	Fri Sep 20 13:28:00 2024
+  Type:		Firmware
+  Compression:	uncompressed
+  Data Size:	36864 Bytes = 36.00 KiB = 0.04 MiB
+  Architecture: AArch64
+  Load Address: 0xff100000
+  Hash algo:	sha256
+  Hash value:	ce8968e34f76e8ddeb0e00dd5ee66002712278aace1d04fd289f1b311e22f0b9
+ Image 3 (atf-3)
+  Description:	ARM Trusted Firmware
+  Created:	Fri Sep 20 13:28:00 2024
+  Type:		Firmware
+  Compression:	uncompressed
+  Data Size:	24576 Bytes = 24.00 KiB = 0.02 MiB
+  Architecture: AArch64
+  Load Address: 0x000f0000
+  Hash algo:	sha256
+  Hash value:	ce48b69fdd46587775fdc2fcc5202886ef8969b8911fd5aad373f50dd9d02361
+ Image 4 (optee)
+  Description:	OP-TEE
+  Created:	Fri Sep 20 13:28:00 2024
+  Type:		Firmware
+  Compression:	uncompressed
+  Data Size:	465312 Bytes = 454.41 KiB = 0.44 MiB
+  Architecture: AArch64
+  Load Address: 0x08400000
+  Hash algo:	sha256
+  Hash value:	b866e4e4a1f70995079fa2d9193a9d0dad9d793d170c69c32c57efc859f0fc5d
+ Image 5 (fdt)
+  Description:	U-Boot dtb
+  Created:	Fri Sep 20 13:28:00 2024
+  Type:		Flat Device Tree
+  Compression:	uncompressed
+  Data Size:	8794 Bytes = 8.59 KiB = 0.01 MiB
+  Architecture: AArch64
+  Hash algo:	sha256
+  Hash value:	ae407ec1f58fca349d47896f435771128849a2356e9be1a43fc0af2f5b97914a
+ Default Configuration: 'conf'
+ Configuration 0 (conf)
+  Description:	rk3588s-khadas-edge2
+  Kernel:	unavailable
+  Firmware:	atf-1
+  FDT:		fdt
+  Loadables:	uboot
+		atf-2
+		atf-3
+		optee
+Info: pack uboot.img okay!
+Info: Packing SPL loader...
+********boot_merger ver 1.35********
+Info:Pack loader ok.
+pack loader(SPL) okay! Input: /home/khadas/fenix/build/rkbin-31cb97291700d408f38ba7a1dc67265672daea6b/RKBOOT/RK3588MINIALL.ini
+
+/home/khadas/fenix/build/u-boot
+Info: Generating idblock.bin ...
+Image Type:   Rockchip RK35 boot image
+Init Data Size: 73728 bytes
+Boot Data Size: 243712 bytes
+
+Done.
+
+Fri Sep 20 01:28:00 PM UTC 2024
+[i] FENIX (scripts/build.sh) BUILD: /home/khadas/fenix/build | DL: /home/khadas/fenix/downloads | sudo:
+Info: Build host: noble target: noble
+Info: Running in container: docker
+Info: apt-cacher is disabled in containers.
+[i] check python -> Python 3.12.3
+[i] check python2 -> Python 3.12.3
+Info: Linux repository does not exist, clone linux repository('khadas-edges-6.1.y') from 'https://github.com/khadas/linux'...
+Cloning into '/home/khadas/fenix/build/linux'...
+remote: Enumerating objects: 87809, done.
+remote: Counting objects: 100% (87809/87809), done.
+remote: Compressing objects: 100% (83623/83623), done.
+remote:nTotale87809 (delta68258),8reused421323M(delta.3307),/pack-reused 0 (from 0)
+Receiving objects: 100% (87809/87809), 243.51 MiB | 8.88 MiB/s, done.
+Resolving deltas: 100% (8258/8258), done.
+Updating files: 100% (82923/82923), done.
+Info: Linux: Already on branch 'khadas-edges-6.1.y'
+Info: Try to update linux:khadas-edges-6.1.y
+remote: Enumerating objects: 11669108, done.
+remote: Counting objects: 100% (11669099/11669099), done.
+remote: Compressing objects: 100% (1829743/1829743), done.
+remote:nTotale11601683%(delta19798189),6reused.115149441(deltai9712804), pack-reused 0 (from 0)
+Receiving objects: 100% (11601683/11601683), 2.56 GiB | 9.95 MiB/s, done.
+Resolving deltas: 100% (9798189/9798189), completed with 57082 local objects.
+From https://github.com/khadas/linux
+ * branch		       khadas-edges-6.1.y	   -> FETCH_HEAD
+ * [new tag]		       220415.106-1649990405	   -> 220415.106-1649990405
+ * [new tag]		       Edge_Nougat_V190527	   -> Edge_Nougat_V190527
+ * [new tag]		       Edge_Nougat_V191115	   -> Edge_Nougat_V191115
+ * [new tag]		       Edge_Pie_V190719		   -> Edge_Pie_V190719
+ * [new tag]		       Edge_Pie_V190816		   -> Edge_Pie_V190816
+ * [new tag]		       Edge_Pie_V190912		   -> Edge_Pie_V190912
+ * [new tag]		       Edge_Pie_V191205		   -> Edge_Pie_V191205
+ * [new tag]		       Edge_Pie_V191223		   -> Edge_Pie_V191223
+ * [new tag]		       Edge_Pie_V191227		   -> Edge_Pie_V191227
+ * [new tag]		       Edge_pie_V190626		   -> Edge_pie_V190626
+ * [new tag]		       V160919			   -> V160919
+ * [new tag]		       V161211			   -> V161211
+ * [new tag]		       V170421			   -> V170421
+ * [new tag]		       V170603			   -> V170603
+ * [new tag]		       V170612			   -> V170612
+ * [new tag]		       V170624			   -> V170624
+ * [new tag]		       V170901			   -> V170901
+ * [new tag]		       V171027			   -> V171027
+ * [new tag]		       V180206			   -> V180206
+ * [new tag]		       V180622			   -> V180622
+ * [new tag]		       V181214			   -> V181214
+ * [new tag]		       V190125			   -> V190125
+ * [new tag]		       V190327			   -> V190327
+ * [new tag]		       V190328			   -> V190328
+ * [new tag]		       Vim3-pie-V190704		   -> Vim3-pie-V190704
+ * [new tag]		       Vims-Pie-V190823		   -> Vims-Pie-V190823
+ * [new tag]		       Vims-Pie-V191202		   -> Vims-Pie-V191202
+ * [new tag]		       Vims-Pie-V200103		   -> Vims-Pie-V200103
+ * [new tag]		       Vims-Pie-V200320		   -> Vims-Pie-V200320
+ * [new tag]		       Vims-Pie-V200617		   -> Vims-Pie-V200617
+ * [new tag]		       Vims-Pie-V200918		   -> Vims-Pie-V200918
+ * [new tag]		       Vims-Pie-V201113		   -> Vims-Pie-V201113
+ * [new tag]		       Vims-Pie-V210128		   -> Vims-Pie-V210128
+ * [new tag]		       Vims-Pie-V210527		   -> Vims-Pie-V210527
+ * [new tag]		       Vims-Pie-V210906		   -> Vims-Pie-V210906
+ * [new tag]		       Vims-Pie-V211022		   -> Vims-Pie-V211022
+ * [new tag]		       Vims-Pie-V211220		   -> Vims-Pie-V211220
+ * [new tag]		       gitserver		   -> gitserver
+ * [new tag]		       khadas-edges-linux-5.10-v1.2-release -> khadas-edges-linux-5.10-v1.2-release
+ * [new tag]		       khadas-edges-linux-5.10-v1.4-release -> khadas-edges-linux-5.10-v1.4-release
+ * [new tag]		       khadas-edges-linux-5.10-v1.5-release -> khadas-edges-linux-5.10-v1.5-release
+ * [new tag]		       khadas-edges-linux-5.10-v1.6.1-release -> khadas-edges-linux-5.10-v1.6.1-release
+ * [new tag]		       khadas-edges-linux-5.10-v1.6.2-release -> khadas-edges-linux-5.10-v1.6.2-release
+ * [new tag]		       khadas-edges-linux-5.10-v1.6.5-release -> khadas-edges-linux-5.10-v1.6.5-release
+ * [new tag]		       khadas-edges-linux-5.10-v1.6.6-release -> khadas-edges-linux-5.10-v1.6.6-release
+ * [new tag]		       khadas-edges-linux-5.10-v1.6.7-release -> khadas-edges-linux-5.10-v1.6.7-release
+ * [new tag]		       khadas-edges-linux-5.10-v1.6.8-release -> khadas-edges-linux-5.10-v1.6.8-release
+ * [new tag]		       khadas-edges-linux-6.1-v1.6.6-release -> khadas-edges-linux-6.1-v1.6.6-release
+ * [new tag]		       khadas-edges-linux-6.1-v1.6.7-release -> khadas-edges-linux-6.1-v1.6.7-release
+ * [new tag]		       khadas-edges-linux-6.1-v1.6.8-release -> khadas-edges-linux-6.1-v1.6.8-release
+ * [new tag]		       khadas-linux-6.9.y-v1.6.8-release -> khadas-linux-6.9.y-v1.6.8-release
+ * [new tag]		       khadas-vims-linux-4.9-v1.1-release -> khadas-vims-linux-4.9-v1.1-release
+ * [new tag]		       khadas-vims-linux-4.9-v1.1.1-release -> khadas-vims-linux-4.9-v1.1.1-release
+ * [new tag]		       khadas-vims-linux-4.9-v1.1.2-release -> khadas-vims-linux-4.9-v1.1.2-release
+ * [new tag]		       khadas-vims-linux-4.9-v1.3-release -> khadas-vims-linux-4.9-v1.3-release
+ * [new tag]		       khadas-vims-linux-4.9-v1.4-release -> khadas-vims-linux-4.9-v1.4-release
+ * [new tag]		       khadas-vims-linux-4.9-v1.5-release -> khadas-vims-linux-4.9-v1.5-release
+ * [new tag]		       khadas-vims-linux-4.9-v1.5.2-release -> khadas-vims-linux-4.9-v1.5.2-release
+ * [new tag]		       khadas-vims-linux-5.15-v1.6-release -> khadas-vims-linux-5.15-v1.6-release
+ * [new tag]		       khadas-vims-linux-5.15-v1.6.3-release -> khadas-vims-linux-5.15-v1.6.3-release
+ * [new tag]		       khadas-vims-linux-5.15-v1.6.4-release -> khadas-vims-linux-5.15-v1.6.4-release
+ * [new tag]		       khadas-vims-linux-5.15-v1.6.9-release -> khadas-vims-linux-5.15-v1.6.9-release
+ * [new tag]		       khadas-vims-linux-5.4-v1.1-release -> khadas-vims-linux-5.4-v1.1-release
+ * [new tag]		       khadas-vims-linux-5.4-v1.2-release -> khadas-vims-linux-5.4-v1.2-release
+ * [new tag]		       khadas-vims-linux-5.4-v1.4-release -> khadas-vims-linux-5.4-v1.4-release
+ * [new tag]		       khadas-vims-linux-5.4-v1.5-release -> khadas-vims-linux-5.4-v1.5-release
+ * [new tag]		       khadas-vims-linux-5.4-v1.5.1-release -> khadas-vims-linux-5.4-v1.5.1-release
+ * [new tag]		       khadas-vims-linux-5.4-v1.5.2-release -> khadas-vims-linux-5.4-v1.5.2-release
+ * [new tag]		       khadas-vims-linux-6.1-v1.4-release -> khadas-vims-linux-6.1-v1.4-release
+ * [new tag]		       khadas-vims-v0.9.3-release  -> khadas-vims-v0.9.3-release
+ * [new tag]		       khadas-vims-v0.9.5-release  -> khadas-vims-v0.9.5-release
+ * [new tag]		       khadas-vims-v0.9.6-release  -> khadas-vims-v0.9.6-release
+ * [new tag]		       khadas-vims-v0.9.7-release  -> khadas-vims-v0.9.7-release
+ * [new tag]		       khadas-vims-v0.9.8-release  -> khadas-vims-v0.9.8-release
+ * [new tag]		       khadas-vims-v1.0-release	   -> khadas-vims-v1.0-release
+ * [new tag]		       khadas-vims-v1.0.1-release  -> khadas-vims-v1.0.1-release
+ * [new tag]		       khadas-vims-v1.0.10-release -> khadas-vims-v1.0.10-release
+ * [new tag]		       khadas-vims-v1.0.11-release -> khadas-vims-v1.0.11-release
+ * [new tag]		       khadas-vims-v1.0.2-release  -> khadas-vims-v1.0.2-release
+ * [new tag]		       khadas-vims-v1.0.3-release  -> khadas-vims-v1.0.3-release
+ * [new tag]		       khadas-vims-v1.0.4-release  -> khadas-vims-v1.0.4-release
+ * [new tag]		       khadas-vims-v1.0.5-release  -> khadas-vims-v1.0.5-release
+ * [new tag]		       khadas-vims-v1.0.6-release  -> khadas-vims-v1.0.6-release
+ * [new tag]		       khadas-vims-v1.0.7-release  -> khadas-vims-v1.0.7-release
+ * [new tag]		       khadas-vims-v1.0.8-release  -> khadas-vims-v1.0.8-release
+ * [new tag]		       khadas-vims-v1.0.9-release  -> khadas-vims-v1.0.9-release
+Already up to date.
+/home/khadas/fenix/build/linux
+Info: Build linux...
+aarch64-none-linux-gnu- /home/khadas/fenix/build/toolchains/gcc-arm-aarch64-none-linux-gnu/bin
+make[1]: Entering directory '/home/khadas/fenix/build/linux'
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  LEX	  scripts/kconfig/lexer.lex.c
+  YACC	  scripts/kconfig/parser.tab.[ch]
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/menu.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTLD  scripts/kconfig/conf
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/khadas/fenix/build/linux'
+make[1]: Entering directory '/home/khadas/fenix/build/linux'
+  SYNC	  include/config/auto.conf.cmd
+  UPD	  include/config/kernel.release
+  HOSTCC  scripts/dtc/dtc.o
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtc/fstree.o
+  HOSTCC  scripts/dtc/data.o
+  HOSTCC  scripts/dtc/livetree.o
+  HOSTCC  scripts/dtc/treesource.o
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTCC  scripts/dtc/checks.o
+  HOSTCC  scripts/dtc/util.o
+  LEX	  scripts/dtc/dtc-lexer.lex.c
+  YACC	  scripts/dtc/dtc-parser.tab.[ch]
+  HOSTCC  scripts/dtc/libfdt/fdt.o
+  HOSTCC  scripts/dtc/libfdt/fdt_ro.o
+  HOSTCC  scripts/dtc/libfdt/fdt_wip.o
+  HOSTCC  scripts/dtc/libfdt/fdt_sw.o
+  HOSTCC  scripts/dtc/libfdt/fdt_rw.o
+  HOSTCC  scripts/dtc/libfdt/fdt_strerror.o
+  HOSTCC  scripts/dtc/libfdt/fdt_empty_tree.o
+  HOSTCC  scripts/dtc/libfdt/fdt_addresses.o
+  HOSTCC  scripts/dtc/libfdt/fdt_overlay.o
+  HOSTCC  scripts/dtc/fdtoverlay.o
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  HOSTLD  scripts/dtc/fdtoverlay
+  HOSTLD  scripts/dtc/dtc
+  DTC	  arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dtb
+make[1]: Leaving directory '/home/khadas/fenix/build/linux'
+
+Done.
+
+Fri Sep 20 01:44:40 PM UTC 2024
+[i] FENIX (scripts/build.sh) BUILD: /home/khadas/fenix/build | DL: /home/khadas/fenix/downloads | sudo:
+Info: Build host: noble target: noble
+Info: Running in container: docker
+Info: apt-cacher is disabled in containers.
+[i] check python -> Python 3.12.3
+[i] check python2 -> Python 3.12.3
+Info: Image install type: EMMC
+Info: Adjust u-boot links for uboot-2017.09
+Android Firmware Package Tool v1.66
+------ PACKAGE ------
+Add file: ./package-file
+Add file: ./package-file done,offset=0x800,size=0x1e6,userspace=0x1
+Add file: ./Image/rk3588_spl_loader.bin
+Add file: ./Image/rk3588_spl_loader.bin done,offset=0x1000,size=0x771c0,userspace=0xef
+Add file: ./Image/rk3588_parameter.txt
+Add file: ./Image/rk3588_parameter.txt done,offset=0x78800,size=0x16a,userspace=0x1
+Add file: ./Image/uboot.img
+Add file: ./Image/uboot.img done,offset=0x79000,size=0x800000,userspace=0x1000
+Add CRC...
+Make firmware OK!
+------ OK ------
+********RKImageMaker ver 1.66********
+Generating new image, please wait...
+Writing head info...
+Writing boot file...
+Writing firmware...
+Generating MD5 data...
+MD5 data generated successfully!
+New image generated successfully!
+mv: cannot move './update.img' to '/home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img': No such file or directory
+make: *** [Makefile:45: uboot-image] Error 1
+root@a3d34f590b7e:/home/khadas/fenix# mkdir build/images
+root@a3d34f590b7e:/home/khadas/fenix# makeruboot-imagees
+[i] FENIX (scripts/build.sh) BUILD: /home/khadas/fenix/build | DL: /home/khadas/fenix/downloads | sudo:
+Info: Build host: noble target: noble
+Info: Running in container: docker
+Info: apt-cacher is disabled in containers.
+[i] check python -> Python 3.12.3
+[i] check python2 -> Python 3.12.3
+Info: U-boot: Already on branch 'khadas-edges-v2017.09'
+Info: Try to update u-boot:khadas-edges-v2017.09
+From https://github.com/khadas/u-boot
+ * branch		   khadas-edges-v2017.09 -> FETCH_HEAD
+Already up to date.
+/home/khadas/fenix/build/u-boot
+Info: Build u-boot...
+make[1]: Entering directory '/home/khadas/fenix/build/u-boot'
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/khadas/fenix/build/u-boot'
+make[1]: Entering directory '/home/khadas/fenix/build/u-boot'
+scripts/kconfig/conf  --silentoldconfig Kconfig
+  CHK	  include/config.h
+  CFG	  u-boot.cfg
+  GEN	  include/autoconf.mk.dep
+  CFG	  spl/u-boot.cfg
+  CFG	  tpl/u-boot.cfg
+  GEN	  include/autoconf.mk
+  GEN	  spl/include/autoconf.mk
+  GEN	  tpl/include/autoconf.mk
+  CHK	  include/config/uboot.release
+  CHK	  include/generated/timestamp_autogenerated.h
+  UPD	  include/generated/timestamp_autogenerated.h
+  CHK	  include/generated/version_autogenerated.h
+  CHK	  include/generated/generic-asm-offsets.h
+  CHK	  include/generated/asm-offsets.h
+  HOSTCC  tools/mkenvimage.o
+  HOSTCC  tools/fit_image.o
+  HOSTCC  tools/image-host.o
+  CHK	  include/config.h
+  HOSTCC  tools/dumpimage.o
+  HOSTCC  tools/mkimage.o
+  CFG	  u-boot.cfg
+  HOSTLD  tools/mkenvimage
+  HOSTLD  tools/dumpimage
+  HOSTLD  tools/mkimage
+  CC	  arch/arm/cpu/armv8/fwcall.o
+  LD	  arch/arm/cpu/armv8/built-in.o
+  CC	  arch/arm/mach-rockchip/board.o
+  CC	  drivers/usb/gadget/f_fastboot.o
+  LD	  arch/arm/mach-rockchip/built-in.o
+  LD	  drivers/usb/gadget/built-in.o
+  CC	  common/main.o
+  LD	  common/built-in.o
+  CC	  cmd/version.o
+  CC	  lib/display_options.o
+  LD	  cmd/built-in.o
+  LD	  lib/built-in.o
+  LD	  u-boot
+  OBJCOPY u-boot.srec
+  OBJCOPY u-boot-nodtb.bin
+  SYM	  u-boot.sym
+start=$(ccache aarch64-linux-gnu-nm u-boot | grep __rel_dyn_start | cut -f 1 -d ' '); end=$(ccache aarch64-linux-gnu-nm u-boot | grep __rel_dyn_end | cut -f 1 -d ' '); tools/relocate-rela u-boot-nodtb.bin 0x00200000 $start $end
+make[3]: 'arch/arm/dts/rk3588s-khadas-edge2.dtb' is up to date.
+  COPY	  u-boot.dtb
+  CC	  spl/common/spl/spl.o
+  CC	  spl/arch/arm/cpu/armv8/fwcall.o
+  CC	  tpl/arch/arm/cpu/armv8/fwcall.o
+  CC	  tpl/arch/arm/mach-rockchip/tpl.o
+  CC	  spl/arch/arm/mach-rockchip/spl.o
+  LD	  tpl/arch/arm/cpu/armv8/built-in.o
+  LD	  spl/arch/arm/cpu/armv8/built-in.o
+  LD	  tpl/arch/arm/mach-rockchip/built-in.o
+  LD	  spl/arch/arm/mach-rockchip/built-in.o
+  LD	  spl/common/spl/built-in.o
+  CC	  spl/lib/display_options.o
+  LD	  tpl/u-boot-tpl
+  OBJCOPY tpl/u-boot-tpl-nodtb.bin
+  COPY	  tpl/u-boot-tpl.bin
+  LD	  spl/lib/built-in.o
+  LD	  spl/u-boot-spl
+  OBJCOPY spl/u-boot-spl-nodtb.bin
+  CAT	  u-boot-dtb.bin
+  CAT	  spl/u-boot-spl-dtb.bin
+  COPY	  spl/u-boot-spl.bin
+  MKIMAGE u-boot.img
+  MKIMAGE u-boot-dtb.img
+  COPY	  u-boot.bin
+  ALIGN	  u-boot.bin
+  CFGCHK  u-boot.cfg
+make[1]: Leaving directory '/home/khadas/fenix/build/u-boot'
+Info: Packing trust.img...
+out:trust.img
+merge success(trust.img)
+/home/khadas/fenix/build/u-boot
+/home/khadas/fenix/build/u-boot
+Info: Packing uboot.img...
+FIT description: FIT Image with ATF/OP-TEE/U-Boot/MCU
+Created:	 Fri Sep 20 13:46:21 2024
+ Image 0 (uboot)
+  Description:	U-Boot
+  Created:	Fri Sep 20 13:46:21 2024
+  Type:		Standalone Program
+  Compression:	uncompressed
+  Data Size:	1396608 Bytes = 1363.88 KiB = 1.33 MiB
+  Architecture: AArch64
+  Load Address: 0x00200000
+  Entry Point:	unavailable
+  Hash algo:	sha256
+  Hash value:	cf6491b5d451a1bac27143fcc15beb891f19b522dcb20fa9dcb0a6c4bab770ab
+ Image 1 (atf-1)
+  Description:	ARM Trusted Firmware
+  Created:	Fri Sep 20 13:46:21 2024
+  Type:		Firmware
+  Compression:	uncompressed
+  Data Size:	204860 Bytes = 200.06 KiB = 0.20 MiB
+  Architecture: AArch64
+  Load Address: 0x00040000
+  Hash algo:	sha256
+  Hash value:	64122e141b75b3618713522722336c28342addc95d8c23b88bb05bff3e84681e
+ Image 2 (atf-2)
+  Description:	ARM Trusted Firmware
+  Created:	Fri Sep 20 13:46:21 2024
+  Type:		Firmware
+  Compression:	uncompressed
+  Data Size:	36864 Bytes = 36.00 KiB = 0.04 MiB
+  Architecture: AArch64
+  Load Address: 0xff100000
+  Hash algo:	sha256
+  Hash value:	ce8968e34f76e8ddeb0e00dd5ee66002712278aace1d04fd289f1b311e22f0b9
+ Image 3 (atf-3)
+  Description:	ARM Trusted Firmware
+  Created:	Fri Sep 20 13:46:21 2024
+  Type:		Firmware
+  Compression:	uncompressed
+  Data Size:	24576 Bytes = 24.00 KiB = 0.02 MiB
+  Architecture: AArch64
+  Load Address: 0x000f0000
+  Hash algo:	sha256
+  Hash value:	ce48b69fdd46587775fdc2fcc5202886ef8969b8911fd5aad373f50dd9d02361
+ Image 4 (optee)
+  Description:	OP-TEE
+  Created:	Fri Sep 20 13:46:21 2024
+  Type:		Firmware
+  Compression:	uncompressed
+  Data Size:	465312 Bytes = 454.41 KiB = 0.44 MiB
+  Architecture: AArch64
+  Load Address: 0x08400000
+  Hash algo:	sha256
+  Hash value:	b866e4e4a1f70995079fa2d9193a9d0dad9d793d170c69c32c57efc859f0fc5d
+ Image 5 (fdt)
+  Description:	U-Boot dtb
+  Created:	Fri Sep 20 13:46:21 2024
+  Type:		Flat Device Tree
+  Compression:	uncompressed
+  Data Size:	8794 Bytes = 8.59 KiB = 0.01 MiB
+  Architecture: AArch64
+  Hash algo:	sha256
+  Hash value:	ae407ec1f58fca349d47896f435771128849a2356e9be1a43fc0af2f5b97914a
+ Default Configuration: 'conf'
+ Configuration 0 (conf)
+  Description:	rk3588s-khadas-edge2
+  Kernel:	unavailable
+  Firmware:	atf-1
+  FDT:		fdt
+  Loadables:	uboot
+		atf-2
+		atf-3
+		optee
+Info: pack uboot.img okay!
+Info: Packing SPL loader...
+********boot_merger ver 1.35********
+Info:Pack loader ok.
+pack loader(SPL) okay! Input: /home/khadas/fenix/build/rkbin-31cb97291700d408f38ba7a1dc67265672daea6b/RKBOOT/RK3588MINIALL.ini
+
+/home/khadas/fenix/build/u-boot
+Info: Generating idblock.bin ...
+Image Type:   Rockchip RK35 boot image
+Init Data Size: 73728 bytes
+Boot Data Size: 243712 bytes
+
+Done.
+
+Fri Sep 20 01:46:21 PM UTC 2024
+[i] FENIX (scripts/build.sh) BUILD: /home/khadas/fenix/build | DL: /home/khadas/fenix/downloads | sudo:
+Info: Build host: noble target: noble
+Info: Running in container: docker
+Info: apt-cacher is disabled in containers.
+[i] check python -> Python 3.12.3
+[i] check python2 -> Python 3.12.3
+Info: Linux: Already on branch 'khadas-edges-6.1.y'
+Info: Try to update linux:khadas-edges-6.1.y
+From https://github.com/khadas/linux
+ * branch		       khadas-edges-6.1.y -> FETCH_HEAD
+Already up to date.
+/home/khadas/fenix/build/linux
+Info: Build linux...
+aarch64-none-linux-gnu- /home/khadas/fenix/build/toolchains/gcc-arm-aarch64-none-linux-gnu/bin
+make[1]: Entering directory '/home/khadas/fenix/build/linux'
+#
+# No change to .config
+#
+make[1]: Leaving directory '/home/khadas/fenix/build/linux'
+make[1]: Entering directory '/home/khadas/fenix/build/linux'
+make[1]: Leaving directory '/home/khadas/fenix/build/linux'
+
+Done.
+
+Fri Sep 20 01:46:26 PM UTC 2024
+[i] FENIX (scripts/build.sh) BUILD: /home/khadas/fenix/build | DL: /home/khadas/fenix/downloads | sudo:
+Info: Build host: noble target: noble
+Info: Running in container: docker
+Info: apt-cacher is disabled in containers.
+[i] check python -> Python 3.12.3
+[i] check python2 -> Python 3.12.3
+Info: Image install type: EMMC
+Info: Adjust u-boot links for uboot-2017.09
+Android Firmware Package Tool v1.66
+------ PACKAGE ------
+Add file: ./package-file
+Add file: ./package-file done,offset=0x800,size=0x1e6,userspace=0x1
+Add file: ./Image/rk3588_spl_loader.bin
+Add file: ./Image/rk3588_spl_loader.bin done,offset=0x1000,size=0x771c0,userspace=0xef
+Add file: ./Image/rk3588_parameter.txt
+Add file: ./Image/rk3588_parameter.txt done,offset=0x78800,size=0x16a,userspace=0x1
+Add file: ./Image/uboot.img
+Add file: ./Image/uboot.img done,offset=0x79000,size=0x800000,userspace=0x1000
+Add CRC...
+Make firmware OK!
+------ OK ------
+********RKImageMaker ver 1.66********
+Generating new image, please wait...
+Writing head info...
+Writing boot file...
+Writing firmware...
+Generating MD5 data...
+MD5 data generated successfully!
+New image generated successfully!
+Info: Making /home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img OK.
+
+Info: IMAGE: /home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img  is ready!
+
+Info: Compressing image '/home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img' to '/home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img.xz' ...
+[i] xze compress /home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img (9372234 bytes) > /home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img.xz
+# /usr/bin/xz -T8 --block-size 90M -k -c -F xz --verbose
+/home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img (1/1)
+ 9100 %	    993.8 KiB /i9,152.6 KiB = 0.109		      0:01
+[i] padded to 1019904 from 1017624 + 2280
+[i] XZ info
+Strms  Blocks	Compressed Uncompressed	 Ratio	Check	Filename
+    1	    1	 996.0 KiB  9,152.6 KiB	 0.109	CRC64	/home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img.xz
+
+Info: COMPRESSED IMAGE:	 /home/khadas/fenix/build/images/Edge2_Uboot_EMMC_1.6.9.1-240920.img.xz	 is ready!
+
+Done.
+
+Fri Sep 20 01:46:28 PM UTC 2024
+root@a3d34f590b7e:/home/khadas/fenix#
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug fenix
+    Learn more at https://docs.docker.com/go/debug-cli/
+[REDACTED@archlinux khadas]$ rk-burn-tool -i fenix/build/images
+images/
+rk-burn-toold-i6fenix/build/images/4b344f35a459547c8037/
+Edge2_Uboot_EMMC_1.6.9.1-240920.img
+Burn to eMMC...
+Rockchip Android image (or linux image compatible with AndroidTool one image burning) found!
+Try to burn Rockchip image...
+Using /home/REDACTED/Documents/paris/khadas/utils/rk-flash-tool/tools/Linux_Upgrade_Tool/config.ini
+Program Log will save in the /home/REDACTED/upgrade_tool/log/
+Loading firmware...
+Support Type:RK3588	FW Ver:1.0.00	FW Time:2024-09-20 13:46:27
+Loader ver:1.0b Loader Time:2024-09-20 13:46:21
+Start to upgrade firmware...
+Download Boot Start
+Download Boot Success
+Wait For Maskrom Start
+Wait For Maskrom Success
+Test Device Start
+Test Device Success
+Check Chip Start
+Check Chip Success
+Get FlashInfo Start
+Get FlashInfo Success
+ Prepare IDB Start
+Prepare IDB Success
+Download IDB Start
+Download IDB Success
+Download Firmware Start
+Download Image Total(8225K),Current(1057K)
+Download Image Total(8225K),Current(2081K)
+Download Image Total(8225K),Current(3105K)
+Download Image Total(8225K),Current(4129K)
+Download Image Total(8225K),Current(5153K)
+Download Image Total(8225K),Current(6177K)
+Download Image Total(8225K),Current(7201K)
+Download Image Total(8225K),Current(8225K)
+Download Image Total(8225K),Current(8225K)
+Download Firmware Success
+Upgrade firmware ok.
+Time elapsed: 0 minute(s).
+Done!
+Fri Sep 20 03:48:05 PM CEST 2024
+[REDACTED@archlinux khadas]$ exit
+
+Script done on 2024-09-20 15:48:16+02:00 [COMMAND_EXIT_CODE="0"]
